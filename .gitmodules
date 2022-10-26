@@ -1,0 +1,6 @@
+[submodule "core"]
+	path = core
+	url = https://github.com/playback-app/playback_core
+[submodule "mobile"]
+	path = mobile
+	url = https://github.com/playback-app/playback_mobile
