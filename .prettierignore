@@ -1,0 +1,11 @@
+target/
+*.lock
+*.dart.js
+*.info.json
+*.js_
+*.js.deps
+*.js.map
+build/
+.idea/
+.dart_tool/
+

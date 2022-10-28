@@ -1,0 +1,69 @@
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+DEV = true
+RELEASE = false
+TARGET_OS = "unknown"
+
+[env.release]
+DEV = false
+RELEASE = true
+
+[tasks.fmt]
+category = "Format"
+run_task = {name = [
+  "fmt-rust",
+  "fmt-c",
+  "fmt-dart",
+], parallel = true}
+
+[tasks.fmt-c]
+category = "Format"
+description = "Format C/C++/Obj-C code"
+script = """
+#! /bin/sh
+# use clang-format to format all C/C++/Objective-C code
+# find all files in the current directory and subdirectories that end with:
+# .c, .cpp, .cc, .h, .hpp, .hh, .m, .mm
+
+# ? workaround for windows bug where directory slashes are escaped when using bash as `script_runner`
+bash -c "find . -type f \\\\( -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.h" -o -name "*.hpp" -o -name "*.hh" -o -name "*.m" -o -name "*.mm"\\\\) -print0 | xargs -0 -r -t clang-format --verbose --style=file -i"
+"""
+script_extension = "sh"
+script_runner = "sh"
+workspace = false
+
+[tasks.fmt-rust]
+args = [
+  "fmt",
+  "--all",
+  "--",
+  "--emit=files",
+]
+category = "Format"
+command = "cargo"
+description = "Format Rust code"
+install_crate = "rustfmt"
+
+[tasks.fmt-dart]
+category = "Format"
+description = "Format Dart code"
+script = """
+    dart format . --fix -l 125 -o write
+"""
+script_runner = "@shell"
+
+[tasks.clean]
+args = ["clean"]
+command = "cargo"
+
+[tasks.build]
+args = ["build"]
+category = "Build"
+command = "cargo"
+dependencies = ["clean"]
+description = "Compiles all rust code in the project."
+
+[tasks.test]
+args = ["test"]
+command = "cargo"
+dependencies = ["clean"]

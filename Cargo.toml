@@ -1,0 +1,28 @@
+[workspace]
+members = [
+  "core/",
+  "mobile/native/*",
+  "cli/",
+]
+
+[profile.release]
+codegen-units = 1
+debug = true
+lto = true
+opt-level = 3
+
+[profile.dev]
+debug = true
+opt-level = 0
+
+[profile.bench]
+codegen-units = 1
+debug = true
+lto = true
+opt-level = 3
+
+[profile.test]
+codegen-units = 1
+debug = true
+lto = true
+opt-level = 3
