@@ -4,3 +4,6 @@
 [submodule "mobile"]
     path = mobile
     url = https://github.com/playback-app/playback_mobile
+[submodule "cli"]
+    path = cli
+    url = https://github.com/playback-app/playback_cli
