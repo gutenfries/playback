@@ -13,8 +13,18 @@ category = "Format"
 run_task = {name = [
   "fmt-rust",
   "fmt-c",
-  "fmt-dart",
+  "fmt-prettier",
 ], parallel = true}
+
+[tasks.fmt-prettier]
+category = "Format"
+description = "Format all files with prettier."
+script = """
+prettier --write --ignore-path .prettierignore . --no-error-on-unmatched-pattern
+"""
+script_extension = "sh"
+script_runner = "sh"
+workspace = false
 
 [tasks.fmt-c]
 category = "Format"
@@ -26,7 +36,19 @@ script = """
 # .c, .cpp, .cc, .h, .hpp, .hh, .m, .mm
 
 # ? workaround for windows bug where directory slashes are escaped when using bash as `script_runner`
-bash -c "find . -type f \\\\( -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.h" -o -name "*.hpp" -o -name "*.hh" -o -name "*.m" -o -name "*.mm"\\\\) -print0 | xargs -0 -r -t clang-format --verbose --style=file -i"
+bash -c 'find . -type f \\\\( \\
+    -name "*.c" -o \\
+    -name "*.cpp" -o \\
+    -name "*.cc" -o \\
+    -name "*.h" -o \\
+    -name "*.hpp" -o \\
+    -name "*.hh" -o \\
+    -name "*.m" -o \\
+    -name "*.mm"\\
+  \\\\) \\
+  -not -path "*/target/*" \\
+  -not -path "*/node_modules/*" \\
+  -print0 | xargs -0 -r -t clang-format --verbose --style=file -i'
 """
 script_extension = "sh"
 script_runner = "sh"
@@ -44,14 +66,6 @@ command = "cargo"
 description = "Format Rust code"
 install_crate = "rustfmt"
 
-[tasks.fmt-dart]
-category = "Format"
-description = "Format Dart code"
-script = """
-    dart format . --fix -l 125 -o write
-"""
-script_runner = "@shell"
-
 [tasks.clean]
 args = ["clean"]
 command = "cargo"
@@ -60,10 +74,65 @@ command = "cargo"
 args = ["build"]
 category = "Build"
 command = "cargo"
-dependencies = ["clean"]
+# dependencies = ["clean"]
 description = "Compiles all rust code in the project."
 
 [tasks.test]
 args = ["test"]
+category = "Test"
 command = "cargo"
-dependencies = ["clean"]
+# dependencies = ["clean"]
+
+[tasks.lint]
+category = "Lint"
+# dependencies = ["fmt"]
+description = "Runs all linters"
+run_task = {name = [
+  "lint-rust",
+  "lint-c",
+], parallel = false}
+
+[tasks.lint-rust]
+args = [
+  "clippy",
+  "--all-targets",
+  "--all-features",
+  "--",
+  "-D",
+  "clippy::all",
+  "-D",
+  "clippy::await_holding_refcell_ref",
+  "-D",
+  "clippy::missing_safety_doc",
+  "-D",
+  "clippy::undocumented_unsafe_blocks",
+]
+category = "Lint"
+command = "cargo"
+description = "Runs the rust linter"
+# install_crate = "clippy"
+
+[tasks.lint-c]
+category = "Lint"
+description = "Runs the C/C++ linter"
+script = """
+#! /bin/sh
+# use clang-tidy to lint all C/C++/Objective-C code
+# find all files in the current directory and subdirectories that end with:
+# .c, .cpp, .cc, .h, .hpp, .hh, .m, .mm
+
+# ? workaround for windows bug where directory slashes are escaped when using bash as `script_runner`
+bash -c "find . -type f \\\\( -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.h" -o -name "*.hpp" -o -name "*.hh" -o -name "*.m" -o -name "*.mm"\\\\) -print0 | xargs -0 -r -t clang-tidy -p ."
+"""
+script_extension = "sh"
+script_runner = "sh"
+workspace = false
+
+[tasks.run]
+args = [
+  "run",
+  "--bin cli",
+]
+category = "Run"
+command = "cargo"
+description = "Runs the cli."

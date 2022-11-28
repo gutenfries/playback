@@ -1,8 +1,9 @@
 [workspace]
 members = [
-  "core/",
-  "mobile/native/*",
-  "cli/",
+	"core/",
+	"core/image_utils",
+	"core/midi_utils",
+	"cli/",
 ]
 
 [profile.release]
