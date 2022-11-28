@@ -12,7 +12,7 @@ RELEASE = true
 category = "Format"
 run_task = {name = [
   "fmt-rust",
-  "fmt-c",
+  # "fmt-c",
   "fmt-prettier",
 ], parallel = true}
 
@@ -89,7 +89,7 @@ category = "Lint"
 description = "Runs all linters"
 run_task = {name = [
   "lint-rust",
-  "lint-c",
+  # "lint-c",
 ], parallel = false}
 
 [tasks.lint-rust]
@@ -117,13 +117,24 @@ category = "Lint"
 description = "Runs the C/C++ linter"
 script = """
 #! /bin/sh
-# use clang-tidy to lint all C/C++/Objective-C code
+# use clang-tidy to format all C/C++/Objective-C code
 # find all files in the current directory and subdirectories that end with:
 # .c, .cpp, .cc, .h, .hpp, .hh, .m, .mm
 
 # ? workaround for windows bug where directory slashes are escaped when using bash as `script_runner`
-bash -c "find . -type f \\\\( -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.h" -o -name "*.hpp" -o -name "*.hh" -o -name "*.m" -o -name "*.mm"\\\\) -print0 | xargs -0 -r -t clang-tidy -p ."
-"""
+bash -c 'find . -type f \\\\( \\
+    -name "*.c" -o \\
+    -name "*.cpp" -o \\
+    -name "*.cc" -o \\
+    -name "*.h" -o \\
+    -name "*.hpp" -o \\
+    -name "*.hh" -o \\
+    -name "*.m" -o \\
+    -name "*.mm"\\
+  \\\\) \\
+  -not -path "*/target/*" \\
+  -not -path "*/node_modules/*" \\
+  -print0 | xargs -0 -r -t clang-tidy --verbose --style=file -i'"""
 script_extension = "sh"
 script_runner = "sh"
 workspace = false
