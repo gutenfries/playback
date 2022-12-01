@@ -17,18 +17,8 @@ category = "Format"
 run_task = {name = [
   "fmt-rust",
   # "fmt-c",
-  "fmt-prettier",
 ], parallel = true}
 
-[tasks.fmt-prettier]
-category = "Format"
-description = "Format all files with prettier."
-script = """
-prettier --write --ignore-path .prettierignore . --no-error-on-unmatched-pattern
-"""
-script_extension = "sh"
-script_runner = "sh"
-workspace = false
 
 [tasks.fmt-c]
 category = "Format"
