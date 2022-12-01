@@ -1,0 +1,26 @@
+name: Lint
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  combo:
+    name: Clippy lints
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install nightly toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+          components: clippy
+
+      - name: Run cargo clippy
+        uses: actions-rs/cargo@v1
+        continue-on-error: false
+        with:
+          command: clippy
+          args: --all-targets --all-features -- -D warnings

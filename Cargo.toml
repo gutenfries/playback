@@ -5,12 +5,28 @@ members = [
 	"core/midi_utils",
 	"cli/",
 ]
+exclude = [
+	"mobile/ffi"
+]
+
+
+[workspace.metadata]
+cargo-features = ["resolver"]
+
+
+[workspace.package]
+authors = ["Mark Gutenberger"]
+edition = "2021"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/playback-app/playback"
+
 
 [profile.release]
 codegen-units = 1
-debug = true
-lto = true
+debug = false
+lto = "fat"
 opt-level = 3
+strip = "debuginfo"
 
 [profile.dev]
 debug = true
@@ -18,12 +34,12 @@ opt-level = 0
 
 [profile.bench]
 codegen-units = 1
-debug = true
-lto = true
+debug = false
+lto = "fat"
 opt-level = 3
 
 [profile.test]
 codegen-units = 1
 debug = true
-lto = true
+lto = "fat"
 opt-level = 3

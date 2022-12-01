@@ -8,6 +8,10 @@ TARGET_OS = "unknown"
 DEV = false
 RELEASE = true
 
+[tasks.default]
+dependencies = ["build"]
+
+
 [tasks.fmt]
 category = "Format"
 run_task = {name = [
