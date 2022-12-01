@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+        with:
+          submodules: true
+          token: ${{ secrets.GH_PAT }}
 
       - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
