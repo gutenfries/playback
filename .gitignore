@@ -6,6 +6,10 @@
 !*.aif
 !*.wav
 
+*_generated.*.dart
+*_generated.dart
+bridge_definitions.dart
+
 # See https://www.dartlang.org/guides/libraries/private-files
 
 # Files and directories created by pub
