@@ -6,7 +6,7 @@ members = [
 	"cli/",
 ]
 exclude = [
-	"mobile/native",
+	"client/native",
 ]
 
 

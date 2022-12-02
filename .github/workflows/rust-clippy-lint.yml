@@ -1,4 +1,4 @@
-name: Lint
+name: Rust Clippy Lint
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
-        with:
-          submodules: true
-          token: ${{ secrets.GH_PAT }}
 
       - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1

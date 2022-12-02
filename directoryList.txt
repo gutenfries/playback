@@ -1,0 +1,5 @@
+"C:\Users\Mark-\dev\playback\client\linux"
+"C:\Users\Mark-\dev\playback\client\build\windows\_deps\corrosion-src\test\hostbuild\hostbuild\src"
+"C:\Users\Mark-\dev\playback\client\linux\flutter"
+"C:\Users\Mark-\dev\playback\client\windows\flutter"
+"C:\Users\Mark-\dev\playback\client\windows\flutter\ephemeral\cpp_client_wrapper"
