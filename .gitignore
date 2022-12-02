@@ -45,6 +45,7 @@ version_tmp/
 
 ### Build Output Rules ###
 [Dd]ebug/
+[Bb]uild/
 [Dd]ebugPublic/
 [Rr]elease/
 [Oo]bj/
@@ -248,6 +249,24 @@ pubspec.lock
 *.js.map
 .flutter-plugins
 .flutter-plugins-dependencies
+**/Flutter/ephemeral/
+Pods/
+Icon?
+**/Pods/
+**/.symlinks/
+**/.generated/
+**/Flutter/App.framework
+**/Flutter/Flutter.framework
+**/Flutter/Flutter.podspec
+**/Flutter/Generated.xcconfig
+**/Flutter/ephemeral/
+**/Flutter/app.flx
+**/Flutter/app.zip
+**/Flutter/flutter_assets/
+**/Flutter/flutter_export_environment.sh
+ServiceDefinitions.json
+GeneratedPluginRegistrant.*
+
 
 ### Obj-C/Swift Rules ###
 *.hmap
@@ -618,6 +637,8 @@ proguard/
 *.ps
 
 ### Xcode Rules ###
+dgph
+xcuserdata/
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
@@ -632,7 +653,6 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
 
 ### (Neo)Vim Rules ###
 [._]*.s[a-v][a-z]
