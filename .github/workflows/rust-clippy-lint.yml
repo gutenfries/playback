@@ -13,14 +13,16 @@ jobs:
       - name: Install nightly toolchain
         uses: actions-rs/toolchain@v1
         with:
-          profile: minimal
+          #   profile: minimal
           toolchain: nightly
           override: true
-          components: clippy
+          default: true
+          components: clippy, rustfmt
 
       - name: Run cargo clippy
         uses: actions-rs/cargo@v1
         continue-on-error: false
         with:
+          toolchain: nightly
           command: clippy
           args: --all-targets --all-features -- -D clippy::all -D clippy::await_holding_refcell_ref -D clippy::missing_safety_doc -D clippy::undocumented_unsafe_blocks
