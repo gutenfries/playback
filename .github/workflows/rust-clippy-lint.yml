@@ -25,4 +25,4 @@ jobs:
         with:
           toolchain: nightly
           command: clippy
-          args: --no-deps --all-targets --all-features -- -D clippy::all -D clippy::await_holding_refcell_ref -D clippy::missing_safety_doc -D clippy::undocumented_unsafe_blocks
+          args: --all-targets --all-features -- -D clippy::all -D clippy::await_holding_refcell_ref -D clippy::missing_safety_doc -D clippy::undocumented_unsafe_blocks

@@ -61,7 +61,7 @@ impl SMFWriter {
 			writer.start_track_header(&mut vec);
 
 			for event in track.events.iter() {
-				length += SMFWriter::write_vtime(event.vtime as u64, &mut vec).unwrap(); // TODO: Handle error
+				length += SMFWriter::write_vtime(event.vtime, &mut vec).unwrap(); // TODO: Handle error
 				writer.write_event(&mut vec, &(event.event), &mut length, &mut saw_eot);
 			}
 
@@ -179,7 +179,7 @@ impl SMFWriter {
 		for ev in track {
 			let vtime = ev.get_time() - cur_time;
 			cur_time = vtime;
-			length += SMFWriter::write_vtime(vtime as u64, &mut vec).unwrap(); // TODO: Handle error
+			length += SMFWriter::write_vtime(vtime, &mut vec).unwrap(); // TODO: Handle error
 			self.write_event(&mut vec, ev.get_event(), &mut length, &mut saw_eot);
 		}
 

@@ -16,24 +16,24 @@ dependencies = ["build"]
 [tasks.format]
 category = "Format"
 dependencies = [
-  "rustfmt",
-  "clang-format",
+	"rustfmt",
+	"clang-format",
 ]
 
 [tasks.clang-format]
 command = "bash"
-args = ["../utils/clang-format.sh"]
+args = ["../dev_utils/clang-format.sh"]
 
 [tasks.clang-tidy]
 command = "bash"
-args = ["../utils/clang-tidy.sh"]
+args = ["../dev_utils/clang-tidy.sh"]
 
 [tasks.rustfmt]
 args = [
-  "fmt",
-  "--all",
-  "--",
-  "--emit=files",
+	"fmt",
+	"--all",
+	"--",
+	"--emit=files",
 ]
 category = "Format"
 command = "cargo"
@@ -57,27 +57,57 @@ command = "cargo"
 
 [tasks.lint]
 category = "Lint"
-dependencies = ["format"]
 description = "Runs all linters"
-run_task = {name = [
-  "clippy",
-  "clang-tidy",
-], parallel = false}
+dependencies = [
+	"format",
+	"clippy",
+	"clang-tidy",
+]
+
+
+[tasks.lint-fix]
+category = "Lint"
+dependencies = [
+	"clippy-fix"
+]
+
+[tasks.clippy-fix]
+args = [
+	"+nightly",
+	"clippy",
+	"--fix",
+	"--all-targets",
+	"--all-features",
+	"--",
+	"-D",
+	"clippy::all",
+	"-D",
+	"clippy::await_holding_refcell_ref",
+	"-D",
+	"clippy::missing_safety_doc",
+	"-D",
+	"clippy::undocumented_unsafe_blocks"
+]
+category = "Lint"
+command = "cargo"
+description = "Runs the rust linter"
+install_crate = "clippy"
 
 [tasks.clippy]
 args = [
-  "clippy",
-  "--all-targets",
-  "--all-features",
-  "--",
-  "-D",
-  "clippy::all",
-  "-D",
-  "clippy::await_holding_refcell_ref",
-  "-D",
-  "clippy::missing_safety_doc",
-  "-D",
-  "clippy::undocumented_unsafe_blocks"
+	"+nightly",
+	"clippy",
+	"--all-targets",
+	"--all-features",
+	"--",
+	"-D",
+	"clippy::all",
+	"-D",
+	"clippy::await_holding_refcell_ref",
+	"-D",
+	"clippy::missing_safety_doc",
+	"-D",
+	"clippy::undocumented_unsafe_blocks"
 ]
 category = "Lint"
 command = "cargo"
@@ -86,8 +116,8 @@ install_crate = "clippy"
 
 [tasks.run]
 args = [
-  "run",
-  "--bin cli",
+	"run",
+	"--bin cli",
 ]
 category = "Run"
 command = "cargo"

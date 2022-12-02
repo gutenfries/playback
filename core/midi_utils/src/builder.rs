@@ -60,8 +60,8 @@ impl PartialEq for AbsoluteEvent {
 			match (&self.event, &other.event) {
 				(&Event::Midi(_), &Event::Meta(_)) => false,
 				(&Event::Meta(_), &Event::Midi(_)) => false,
-				(&Event::Meta(ref me), &Event::Meta(ref you)) => me.command == you.command,
-				(&Event::Midi(ref me), &Event::Midi(ref you)) => me.data(0) == you.data(0) && me.data(1) == me.data(1),
+				(Event::Meta(me), Event::Meta(you)) => me.command == you.command,
+				(Event::Midi(me), Event::Midi(you)) => me.data(0) == you.data(0) && me.data(1) == me.data(1),
 			}
 		} else {
 			false
@@ -88,12 +88,12 @@ impl Ord for AbsoluteEvent {
 					(&Event::Midi(_), &Event::Meta(_)) => Ordering::Greater,
 					// I'm meta, other is midi, so I'm less
 					(&Event::Meta(_), &Event::Midi(_)) => Ordering::Less,
-					(&Event::Meta(ref me), &Event::Meta(ref you)) => me.command.cmp(&you.command),
-					(&Event::Midi(ref me), &Event::Midi(ref you)) if me.data(0) < you.data(0) => Ordering::Less,
-					(&Event::Midi(ref me), &Event::Midi(ref you)) if me.data(0) > you.data(0) => Ordering::Greater,
-					(&Event::Midi(ref me), &Event::Midi(ref you)) if me.data(1) < you.data(1) => Ordering::Less,
-					(&Event::Midi(ref me), &Event::Midi(ref you)) if me.data(1) > you.data(1) => Ordering::Greater,
-					(&Event::Midi(ref _me), &Event::Midi(ref _you)) => res,
+					(Event::Meta(me), Event::Meta(you)) => me.command.cmp(&you.command),
+					(Event::Midi(me), Event::Midi(you)) if me.data(0) < you.data(0) => Ordering::Less,
+					(Event::Midi(me), Event::Midi(you)) if me.data(0) > you.data(0) => Ordering::Greater,
+					(Event::Midi(me), Event::Midi(you)) if me.data(1) < you.data(1) => Ordering::Less,
+					(Event::Midi(me), Event::Midi(you)) if me.data(1) > you.data(1) => Ordering::Greater,
+					(Event::Midi(_me), Event::Midi(_you)) => res,
 				}
 			},
 		}
