@@ -1,4 +1,4 @@
-# flutter_rust_bridge_template
+# playback
 
 This repository serves as a template for Flutter projects calling into native Rust
 libraries via `flutter_rust_bridge`.
@@ -6,12 +6,13 @@ libraries via `flutter_rust_bridge`.
 ## Getting Started
 
 To begin, ensure that you have a working installation of the following items:
+
 - [Flutter SDK](https://docs.flutter.dev/get-started/install)
 - [Rust language](https://rustup.rs/)
 - Appropriate [Rust targets](https://rust-lang.github.io/rustup/cross-compilation.html) for cross-compiling to your device
 - For Android targets:
-    - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
-    - Install Android NDK 22, then put its path in one of the `gradle.properties`, e.g.:
+  - Install [cargo-ndk](https://github.com/bbqsrc/cargo-ndk#installing)
+  - Install Android NDK 22, then put its path in one of the `gradle.properties`, e.g.:
 
 ```
 echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
@@ -26,11 +27,13 @@ to learn how to write and use binding code.
 Once you have edited `api.rs` to incorporate your own Rust code, the bridge files `bridge_definitions.dart` and `bridge_generated.dart` are generated using the following command:
 
 ### Windows
+
 ```
 flutter_rust_bridge_codegen --rust-input native\src\api.rs --dart-output .\lib\bridge_generated.dart --dart-decl-output .\lib\bridge_definitions.dart
 ```
 
 ### Linux/MacOS/any other Unix
+
 ```
 flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output ./lib/bridge_generated.dart --dart-decl-output ./lib/bridge_definitions.dart
 ```
@@ -46,6 +49,7 @@ for more details.
 Copyright 2022 Viet Dinh.
 
 This template is licensed under either of
+
 - [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) ([LICENSE-APACHE](LICENSE-APACHE))
 - [MIT license](https://opensource.org/licenses/MIT) ([LICENSE-MIT](LICENSE-MIT))
 

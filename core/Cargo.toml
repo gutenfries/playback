@@ -22,5 +22,5 @@ image_utils = {path = "./image_utils"}
 midi_utils = {path = "./midi_utils"}
 
 [lib]
-# crate-type = ["cdylib", "rlib"]
+crate-type = ["cdylib", "rlib"]
 path = "lib.rs"

@@ -41,8 +41,26 @@ description = "Format Rust code"
 install_crate = "rustfmt"
 
 [tasks.clean]
-args = ["clean"]
+dependencies = [
+	"cargo-clean",
+	"flutter-clean",
+]
+
+[tasks.cargo-clean]
 command = "cargo"
+args = ["clean"]
+
+[tasks.flutter-clean]
+windows_alias = "flutter-clean-windows"
+linux_alias = "flutter-clean-unix"
+
+[tasks.flutter-clean-windows]
+command = "flutter.bat"
+args = ["clean"]
+
+[tasks.flutter-clean-unix]
+command = "flutter"
+args = ["clean"]
 
 [tasks.build]
 args = ["build"]
