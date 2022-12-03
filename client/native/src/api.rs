@@ -52,8 +52,8 @@ pub fn platform() -> Platform {
 	}
 }
 
-// The convention for Rust identifiers is the snake_case,
-// and they are automatically converted to camelCase on the Dart side.
+/// The convention for Rust identifiers is the snake_case,
+/// and they are automatically converted to camelCase on the Dart side.
 pub fn rust_release_mode() -> bool {
 	cfg!(not(debug_assertions))
 }
@@ -61,4 +61,8 @@ pub fn rust_release_mode() -> bool {
 /// adds two integers
 pub fn add(a: i32, b: i32) -> i32 {
 	a.wrapping_add(b)
+}
+
+pub fn divide(a: i32, b: i32) -> i32 {
+	a.wrapping_div(b)
 }

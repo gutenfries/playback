@@ -104,7 +104,6 @@ Backup of *.doc*
 *_gen.*.*
 *_gen.*
 bridge_definitions.dart
-ffi*.dart
 
 ### Compressed Files Rules ###
 *.tgz

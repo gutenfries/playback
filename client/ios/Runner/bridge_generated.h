@@ -20,6 +20,8 @@ void wire_rust_release_mode(int64_t port_);
 
 void wire_add(int64_t port_, int32_t a, int32_t b);
 
+void wire_divide(int64_t port_, int32_t a, int32_t b);
+
 void free_WireSyncReturnStruct(struct WireSyncReturnStruct val);
 
 static int64_t dummy_method_to_enforce_bundling(void) {
@@ -27,6 +29,7 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) wire_platform);
     dummy_var ^= ((int64_t) (void*) wire_rust_release_mode);
     dummy_var ^= ((int64_t) (void*) wire_add);
+    dummy_var ^= ((int64_t) (void*) wire_divide);
     dummy_var ^= ((int64_t) (void*) free_WireSyncReturnStruct);
     dummy_var ^= ((int64_t) (void*) store_dart_post_cobject);
     return dummy_var;
