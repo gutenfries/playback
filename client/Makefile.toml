@@ -1,3 +1,43 @@
 extend = [
-	{ path = "../Makefile.toml" }, 
-] 
+	{ path = "../Makefile.toml" },
+]
+
+[tasks.build]
+dependencies = ["build-rust", "flutter-build"]
+
+[tasks.build-rust]
+command = "flutter_rust_bridge_codegen"
+args = [
+	"--rust-input",
+	"native/src/api.rs",
+	"--dart-output",
+	"lib/bridge_generated.dart",
+	"--dart-decl-output",
+	"lib/bridge_definitions.dart",
+	"--c-output",
+	"ios/Runner/bridge_generated.h",
+	"--c-output",
+	"macos/Runner/bridge_generated.h",
+	"--wasm",
+]
+
+[tasks.flutter-build]
+windows_alias = "flutter-build-windows"
+linux_alias = "flutter-build-unix"
+
+[tasks.flutter-build-windows]
+command = "flutter.bat"
+args = ["build", "bundle"]
+
+[tasks.flutter-build-unix]
+command = "flutter"
+args = ["build", "bundle"]
+
+
+[tasks.web]
+command = "flutter"
+args = [
+	"pub",
+	"run",
+	"flutter_rust_bridge:serve",
+]

@@ -10,7 +10,18 @@ DEV = false
 RELEASE = true
 
 [tasks.default]
-dependencies = ["build"]
+dependencies = ["build", "build-client"]
+
+[tasks.build-client]
+command = "cargo"
+args = [
+	"make",
+	"--makefile",
+	"./Makefile.toml",
+	"--cwd",
+	"./client/",
+	"build",
+]
 
 
 [tasks.format]
@@ -61,12 +72,6 @@ args = ["clean"]
 [tasks.flutter-clean-unix]
 command = "flutter"
 args = ["clean"]
-
-[tasks.build]
-args = ["build"]
-category = "Build"
-command = "cargo"
-description = "Compiles all rust code in the project."
 
 [tasks.test]
 args = ["test"]
