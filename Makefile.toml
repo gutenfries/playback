@@ -10,16 +10,26 @@ DEV = false
 RELEASE = true
 
 [tasks.default]
-dependencies = ["build", "build-client"]
+dependencies = ["build"]
+
+[tasks.build]
+workspace = false
+dependencies = ["build-client", "build-core"]
+
+[tasks.build-core]
+workspace = false
+command = "cargo"
+args = ["build"]
 
 [tasks.build-client]
+workspace = false
 command = "cargo"
 args = [
 	"make",
-	"--makefile",
-	"./Makefile.toml",
 	"--cwd",
 	"./client/",
+	"--makefile",
+	"./Makefile.toml",
 	"build",
 ]
 
@@ -32,10 +42,12 @@ dependencies = [
 ]
 
 [tasks.clang-format]
+workspace = false
 command = "bash"
 args = ["../dev_utils/clang-format.sh"]
 
 [tasks.clang-tidy]
+workspace = false
 command = "bash"
 args = ["../dev_utils/clang-tidy.sh"]
 
