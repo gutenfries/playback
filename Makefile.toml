@@ -1,6 +1,6 @@
 [env]
-# CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
-# CARGO_MAKE_USE_WORKSPACE_PROFILE = true
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+CARGO_MAKE_USE_WORKSPACE_PROFILE = true
 DEV = true
 RELEASE = false
 TARGET_OS = "unknown"
@@ -88,7 +88,10 @@ command = "cargo"
 
 [tasks.lint]
 category = "Lint"
-dependencies = ["format", "clippy", "clang-tidy"]
+dependencies = [
+	"clippy",
+	# "clang-tidy",
+]
 description = "Runs all linters"
 
 [tasks.lint-fix]
@@ -97,15 +100,13 @@ dependencies = ["clippy-fix"]
 
 [tasks.clippy-fix]
 args = [
-	"+nightly",
+	# "+nightly",
 	"clippy",
 	"--fix",
 	"--all-targets",
 	"--all-features",
 	"--",
 	"-D",
-	"clippy::all",
-	"-D",
 	"clippy::await_holding_refcell_ref",
 	"-D",
 	"clippy::missing_safety_doc",
@@ -115,18 +116,16 @@ args = [
 category = "Lint"
 command = "cargo"
 description = "Runs the rust linter"
-install_crate = "clippy"
+# install_crate = "clippy"
 
 [tasks.clippy]
 args = [
-	"+nightly",
+	# "+nightly",
 	"clippy",
 	"--all-targets",
 	"--all-features",
 	"--",
 	"-D",
-	"clippy::all",
-	"-D",
 	"clippy::await_holding_refcell_ref",
 	"-D",
 	"clippy::missing_safety_doc",
@@ -136,7 +135,7 @@ args = [
 category = "Lint"
 command = "cargo"
 description = "Runs the rust linter"
-install_crate = "clippy"
+# install_crate = "clippy"
 
 [tasks.run]
 args = ["run", "--bin cli"]

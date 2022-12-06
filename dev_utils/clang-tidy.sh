@@ -16,6 +16,12 @@ function clang_format() {
 		-not -path "*/node_modules/*" \
 		-not -path "*/build/*" \
 		-not -path "*/ephemeral/*" \
+		-not -path "*/ios/*" \
+		-not -path "*/macos/*" \
+		-not -path "*/linux/*" \
+		-not -path "*/windows/*" \
+		-not -path "*/android/*" \
+		-not -path "*/web/*" \
 		-print0 | xargs -0 clang-tidy --format-style=file
 }
 
@@ -28,6 +34,7 @@ function find_clang_format() {
 }
 
 function main() {
+	cd ..
 	echo "Running clang-tidy..."
 	find_clang_format
 	clang_format

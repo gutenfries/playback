@@ -28,6 +28,7 @@ function find_clang_format() {
 }
 
 function main() {
+	cd ..
 	echo "Running clang-format..."
 	find_clang_format
 	clang_format
