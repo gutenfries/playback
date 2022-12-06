@@ -19,5 +19,11 @@ jobs:
         with:
           channel: "stable"
 
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Debug info
+        run: flutter doctor -v
+
       - name: Run Flutter Lints
         run: flutter analyze

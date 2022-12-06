@@ -1,19 +1,6 @@
 # editorconfig.org
 root = true
 
-[*.ps1, *.psm1]
-end_of_line = crlf
-
-[*.yml, *.yaml]
-indent_size = 2
-indent_style = space
-tab_width = 2
-
-[*.dart]
-indent_size = 2
-indent_style = space
-tab_width = 2
-
 [*]
 print_width = 125
 indent_style = tab
@@ -28,3 +15,16 @@ spaces_around_operators = true
 spaces_around_brackets = outside
 indent_brace_style = K&R # OTBS
 encoding = utf-8
+
+[*.ps1, *.psm1]
+end_of_line = crlf
+
+[*.yml, *.yaml]
+indent_size = 2
+indent_style = space
+tab_width = 2
+
+[*.dart]
+indent_size = 2
+indent_style = space
+tab_width = 2
