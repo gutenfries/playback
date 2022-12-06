@@ -8,6 +8,7 @@ export 'bridge_definitions.dart';
 
 // Re-export the bridge so it is only necessary to import this file.
 export 'bridge_generated.dart';
+// dart:io.Platform conflicts with the Platform class in bridge_definitions.dart
 import 'dart:io' as io;
 
 const _base = 'native';

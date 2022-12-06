@@ -1,0 +1,168 @@
+{
+  "title": "Reserva de cabinas",
+  "summary": "Resumen",
+  "cabin": "Cabina",
+  "cabins": "Cabinas",
+  "booking": "Reserva",
+  "bookings": "Reservas",
+  "nBookings": "{n, plural, =0 {Sin reservas} =1 {{n} reserva} other {{n} reservas}}",
+  "@nBookings": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "recurringBooking": "Reserva periódica",
+  "recurringBookings": "Reservas periódicas",
+  "schoolYear": "Curso",
+  "schoolYears": "Cursos",
+  "workingDays": "Días laborables",
+  "holidays": "Vacaciones",
+  "schoolDay": "Lectivo",
+  "nonSchoolDay": "No lectivo",
+  "lockedRange": "Rango bloqueado",
+  "book": "Reservar",
+  "student": "Estudiante",
+  "add": "Añadir",
+  "edit": "Editar",
+  "previousDay": "Día anterior",
+  "yesterday": "Ayer",
+  "today": "Hoy",
+  "tomorrow": "Mañana",
+  "nextDay": "Día siguiente",
+  "start": "Inicio",
+  "startDate": "Fecha de inicio",
+  "end": "Final",
+  "endDate": "Fecha de finalización",
+  "enterValue": "Introduzca un valor",
+  "enterStudentName": "Introduzca el nombre del / de la estudiante",
+  "enterDescription": "Introduzca la descripción",
+  "enterStartTime": "Introduzca la hora de inicio",
+  "enterEndTime": "Introduzca la hora de finalización",
+  "enterValidRange": "Introduzca un rango válido",
+  "enterDate": "Introduzca la fecha",
+  "enterOccurrences": "Introduzca las ocurrencias",
+  "occupied": "Espacio ocupado",
+  "deleteBookingTitle": "¿Seguro que desea suprimir la reserva?",
+  "emptyItemTitle": "¿Seguro que desea vaciar el ítem?",
+  "deleteItemTitle": "¿Seguro que desea suprimir el ítem?",
+  "emptyCabinTitle": "¿Seguro que desea vaciar la cabina?",
+  "deleteCabinTitle": "¿Seguro que desea suprimir la cabina?",
+  "deleteSchoolYearTitle": "¿Seguro que desea suprimir el curso?",
+  "actionUndone": "Esta acción no se puede deshacer.",
+  "dataCouldNotBeLoaded": "Los datos no se han podido cargar.",
+  "changesSaved": "Se han guardado los cambios",
+  "errorSavingChanges": "Ha ocurrido un error al guardar los cambios",
+  "locked": "Bloqueada",
+  "description": "Descripción",
+  "noCabins": "Sin cabinas",
+  "noCabinsMessage": "Añada una cabina para empezar",
+  "noSchoolYearsMessage": "Añada un curso para empezar",
+  "accumulatedTime": "Tiempo acumulado",
+  "nPercentOccupied": "{n} % de ocupación",
+  "@nPercentOccupied": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "mostOccupiedTimeRange": "Horario más ocupado",
+  "mostBookedDay": "Día con más reservas",
+  "onDate": "El día",
+  "after": "{n, plural, other {Después de }}",
+  "@after": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "nOccurrences": "{n, plural, =1 {ocurrencia} other {ocurrencias}}",
+  "@nOccurrences": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "nSelected": "{n, plural, =1 {{n} seleccionada} other {{n} seleccionadas}}",
+  "@nSelected": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "cancelSelection": "Cancelar la selección",
+  "empty": "Vaciar",
+  "sortBy": "Ordenar por",
+  "recurrence": "Repetición",
+  "doesNotRepeat": "No se repite",
+  "repeats": "Se repite",
+  "everyDay": "Cada día",
+  "everyWeek": "Cada semana",
+  "everyMonth": "Cada mes",
+  "everyYear": "Cada año",
+  "daily": "Diariamente",
+  "weekly": "Semanalmente",
+  "monthly": "Mensualmente",
+  "annually": "Anualmente",
+  "pianos": "Pianos",
+  "lecterns": "Atriles",
+  "chairs": "Sillas",
+  "tables": "Mesas",
+  "createdOn": "{day, plural, other {Creado el {date}}}",
+  "@createdOn": {
+    "placeholders": {
+      "day": {
+        "type": "int",
+        "format": "compactLong"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "modifiedOn": "{day, plural, other {Modificado el {date}}}",
+  "@modifiedOn": {
+    "placeholders": {
+      "day": {
+        "type": "int",
+        "format": "compactLong"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "nModifications": "{n, plural, =1 {{n} modificación} other {{n} modificaciones}}",
+  "@nModifications": {
+    "placeholders": {
+      "n": {
+        "type": "int",
+        "format": "compactLong"
+      }
+    }
+  },
+  "total": "Total",
+  "less": "Menos",
+  "more": "Más",
+  "activity": "Actividad",
+  "pastYearOfActivity": "Último año de actividad",
+  "popularTimes": "Horas de más afluencia",
+  "pending": "Pendiente",
+  "confirmed": "Confirmada",
+  "cancelled": "Cancelada",
+  "hour": "hora",
+  "hours": "horas",
+  "minute": "minuto",
+  "minutes": "minutos",
+  "typeANewBooking": "Escribe una nueva reserva"
+}
