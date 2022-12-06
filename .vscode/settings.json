@@ -1,0 +1,18 @@
+{
+	"evenBetterToml.formatter.align_entries": = false,
+	"evenBetterToml.formatter.align_comments": = true,
+	"evenBetterToml.formatter.array_trailing_comma": = true,
+	"evenBetterToml.formatter.array_auto_expand": = true,
+	"evenBetterToml.formatter.array_auto_collapse": = true,
+	"evenBetterToml.formatter.compact_arrays": = false,
+	"evenBetterToml.formatter.compact_inline_tables": = false,
+	"evenBetterToml.formatter.compact_entries": = false,
+	"evenBetterToml.formatter.column_width": = 20,
+	"evenBetterToml.formatter.indent_tables": = false,
+	"evenBetterToml.formatter.indent_entries": = false,
+	"evenBetterToml.formatter.indent_string =": "	",
+	"evenBetterToml.formatter.trailing_newline": = true,
+	"evenBetterToml.formatter.reorder_keys": = true,
+	"evenBetterToml.formatter.allowed_blank_lines": = 2,
+	"evenBetterToml.formatter.crlf": = false,
+}

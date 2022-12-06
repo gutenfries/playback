@@ -1,17 +1,16 @@
 [package]
-name = "cli"
-version = "0.1.0"
-description = "cli client for playback"
 authors.workspace = true
+description = "cli client for playback"
 edition.workspace = true
 license.workspace = true
+name = "playback_cli"
 repository.workspace = true
+version = "0.1.0"
 
 [dependencies]
-# clap = {version = "4.0.18", features = ["derive", "cargo"]}
-clap = {version = "4.0.18"}
-playback_core = {path = "../core"}
+clap = { version = "4.0.18", features = ["derive", "cargo"] }
 once_cell = "1.8.0"
+playback_core = { path = "../core" }
 
 [[bin]]
 name = "playback"

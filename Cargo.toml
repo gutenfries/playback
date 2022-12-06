@@ -1,25 +1,15 @@
 [workspace]
-members = [
-	"core/",
-	"core/image_utils",
-	"core/midi_utils",
-	"cli/",
-]
-exclude = [
-	"client/native",
-]
-
+members = ["core/", "core/image_utils", "core/midi_utils", "cli/"]
+exclude = ["client/native"]
 
 [workspace.metadata]
 cargo-features = ["resolver"]
-
 
 [workspace.package]
 authors = ["Mark Gutenberger"]
 edition = "2021"
 license = "GPL-3.0-or-later"
 repository = "https://github.com/playback-app/playback"
-
 
 [profile.release]
 codegen-units = 1

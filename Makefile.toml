@@ -1,6 +1,6 @@
-
 [env]
-CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+# CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+# CARGO_MAKE_USE_WORKSPACE_PROFILE = true
 DEV = true
 RELEASE = false
 TARGET_OS = "unknown"
@@ -9,81 +9,77 @@ TARGET_OS = "unknown"
 DEV = false
 RELEASE = true
 
+[config]
+skip_core_tasks = true
+
 [tasks.default]
 dependencies = ["build"]
 
 [tasks.build]
-workspace = false
-dependencies = ["build-client", "build-core"]
+dependencies = ["build-core", "build-cli", "build-client"]
 
 [tasks.build-core]
-workspace = false
+args = ["build", "-p", "playback_core"]
 command = "cargo"
-args = ["build"]
+
+[tasks.build-cli]
+args = ["build", "-p", "playback_cli"]
+command = "cargo"
 
 [tasks.build-client]
-workspace = false
-command = "cargo"
+command = "flutter_rust_bridge_codegen"
 args = [
-	"make",
-	"--cwd",
-	"./client/",
-	"--makefile",
-	"./Makefile.toml",
-	"build",
+	"--rust-input",
+	"../client/native/src/api.rs",
+	"--dart-output",
+	"../client/lib/bridge_generated.dart",
+	"--dart-decl-output",
+	"../client/lib/bridge_definitions.dart",
+	"--c-output",
+	"../client/ios/Runner/bridge_generated.h",
+	"--c-output",
+	"../client/macos/Runner/bridge_generated.h",
+	"--wasm",
 ]
-
 
 [tasks.format]
 category = "Format"
-dependencies = [
-	"rustfmt",
-	"clang-format",
-]
+dependencies = ["rustfmt", "clang-format", "flutter-format"]
 
 [tasks.clang-format]
-workspace = false
-command = "bash"
 args = ["../dev_utils/clang-format.sh"]
+command = "bash"
 
 [tasks.clang-tidy]
-workspace = false
-command = "bash"
 args = ["../dev_utils/clang-tidy.sh"]
+command = "bash"
+
+[tasks.flutter-format]
+windows.command = "flutter.bat"
+linux.command = "flutter"
+mac.command = "flutter"
+args = ["format", "."]
 
 [tasks.rustfmt]
-args = [
-	"fmt",
-	"--all",
-	"--",
-	"--emit=files",
-]
+args = ["fmt", "--all", "--", "--emit=files"]
 category = "Format"
 command = "cargo"
 description = "Format Rust code"
 install_crate = "rustfmt"
 
 [tasks.clean]
-dependencies = [
-	"cargo-clean",
-	"flutter-clean",
-]
+dependencies = ["cargo-clean", "flutter-clean"]
 
 [tasks.cargo-clean]
-command = "cargo"
 args = ["clean"]
+command = "cargo"
 
 [tasks.flutter-clean]
-windows_alias = "flutter-clean-windows"
-linux_alias = "flutter-clean-unix"
-
-[tasks.flutter-clean-windows]
-command = "flutter.bat"
 args = ["clean"]
+windows.command = "flutter.bat"
+linux.command = "flutter"
+mac.command = "flutter"
 
-[tasks.flutter-clean-unix]
-command = "flutter"
-args = ["clean"]
 
 [tasks.test]
 args = ["test"]
@@ -92,19 +88,12 @@ command = "cargo"
 
 [tasks.lint]
 category = "Lint"
+dependencies = ["format", "clippy", "clang-tidy"]
 description = "Runs all linters"
-dependencies = [
-	"format",
-	"clippy",
-	"clang-tidy",
-]
-
 
 [tasks.lint-fix]
 category = "Lint"
-dependencies = [
-	"clippy-fix"
-]
+dependencies = ["clippy-fix"]
 
 [tasks.clippy-fix]
 args = [
@@ -121,7 +110,7 @@ args = [
 	"-D",
 	"clippy::missing_safety_doc",
 	"-D",
-	"clippy::undocumented_unsafe_blocks"
+	"clippy::undocumented_unsafe_blocks",
 ]
 category = "Lint"
 command = "cargo"
@@ -142,7 +131,7 @@ args = [
 	"-D",
 	"clippy::missing_safety_doc",
 	"-D",
-	"clippy::undocumented_unsafe_blocks"
+	"clippy::undocumented_unsafe_blocks",
 ]
 category = "Lint"
 command = "cargo"
@@ -150,10 +139,7 @@ description = "Runs the rust linter"
 install_crate = "clippy"
 
 [tasks.run]
-args = [
-	"run",
-	"--bin cli",
-]
+args = ["run", "--bin cli"]
 category = "Run"
 command = "cargo"
 description = "Runs the cli."

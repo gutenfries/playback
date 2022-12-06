@@ -1,0 +1,4 @@
+{
+	"recommendations": ["tamasfe.even-better-toml"],
+	"unwantedRecommendations": ["ms-vscode.cmake-tools", "twxs.cmake"]
+}
