@@ -1,16 +1,16 @@
-name: Rust Clippy Lints
+name: Rust Lints
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  combo:
+  lint:
     name: Clippy lints
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources
+      - name: Checkout Sources
         uses: actions/checkout@v3
 
-      - name: Install nightly toolchain
+      - name: Install Rust Nightly Toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
@@ -18,7 +18,7 @@ jobs:
           default: true
           components: clippy, rustfmt
 
-      - name: Run cargo clippy
+      - name: Run Cargo Clippy
         uses: actions-rs/cargo@v1
         continue-on-error: false
         with:

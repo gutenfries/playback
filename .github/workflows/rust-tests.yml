@@ -1,0 +1,31 @@
+name: Flutter Tests
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    name: Flutter Tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+
+      - name: Install Rust Nightly Toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+          default: true
+          components: clippy, rustfmt
+
+      - name: Run Cargo Tests
+        uses: actions-rs/cargo@v1
+        continue-on-error: false
+        with:
+          toolchain: nightly
+          command: test
+          args: --all-targets --all-features

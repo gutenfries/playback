@@ -1,10 +1,15 @@
-name: Dart Flutter Lints
+name: Flutter Tests
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+  test:
+    name: Flutter Tests on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps:
       - name: Checkout Sources
         uses: actions/checkout@v2
@@ -19,5 +24,5 @@ jobs:
         with:
           channel: "stable"
 
-      - name: Run Flutter Lints
-        run: cd client && flutter analyze
+      - name: Run Flutter Tests
+        run: cd client && flutter test
