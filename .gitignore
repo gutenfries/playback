@@ -98,13 +98,6 @@ Backup of *.doc*
 *.~vsd*
 .~lock.*
 
-### Generated File Rules ####
-*_generated.*.*
-*_generated.*
-*_gen.*.*
-*_gen.*
-bridge_definitions.dart
-
 ### Compressed Files Rules ###
 *.tgz
 *.zip
