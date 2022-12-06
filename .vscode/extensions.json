@@ -1,4 +1,11 @@
 {
-	"recommendations": ["tamasfe.even-better-toml"],
+	"recommendations": [
+		"tamasfe.even-better-toml",
+		"rust-lang.rust-analyzer",
+		"Dart-Code.flutter",
+		"marcelovelasquez.flutter-tree",
+		"circlecodesolution.ccs-flutter-color",
+		"aksharpatel47.vscode-flutter-helper"
+	],
 	"unwantedRecommendations": ["ms-vscode.cmake-tools", "twxs.cmake"]
 }
