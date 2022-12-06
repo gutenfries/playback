@@ -1,4 +1,4 @@
-name: Flutter Tests
+name: Rust Tests
 
 on: [push, pull_request, workflow_dispatch]
 
