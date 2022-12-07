@@ -29,6 +29,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
       RestaurantDetailResponse restaurantDetail =
           await ApiRestaurant.getRestaurantDetail(id);
 
+      // ignore: unnecessary_null_comparison
       if (restaurantDetail.restaurantDetail == null) {
         _responseState = ResponseState.noData;
         notifyListeners();

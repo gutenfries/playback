@@ -16,15 +16,20 @@ class RestaurantListResponse {
         error: json['error'],
         message: json['message'],
         count: json['count'],
-        restaurants: List<RestaurantList>.from(json['restaurants']
-            .map((restaurant) => RestaurantList.fromJson(restaurant))),
+        restaurants: List<RestaurantList>.from(
+          json['restaurants'].map(
+            (Map<String, dynamic> restaurant) => {
+              RestaurantList.fromJson(restaurant),
+            },
+          ),
+        ),
       );
 
   Map<String, dynamic> toJson() => {
-        "error": error,
-        "message": message,
-        "count": count,
-        "restaurants": List<dynamic>.from(restaurants.map((x) => x.toJson())),
+        'error': error,
+        'message': message,
+        'count': count,
+        'restaurants': List<dynamic>.from(restaurants.map((x) => x.toJson())),
       };
 }
 
@@ -55,11 +60,11 @@ class RestaurantList {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "description": description,
-        "pictureId": pictureId,
-        "city": city,
-        "rating": rating,
+        'id': id,
+        'name': name,
+        'description': description,
+        'pictureId': pictureId,
+        'city': city,
+        'rating': rating,
       };
 }

@@ -52,10 +52,20 @@ class RestaurantDetail {
         pictureId: json['pictureId'],
         rating: json['rating'].toDouble(),
         categories: List<Category>.from(
-            json['categories'].map((item) => Category.fromJson(item))),
+          json['categories'].map(
+            (Map<String, dynamic> item) => {
+              Category.fromJson(item),
+            },
+          ),
+        ),
         menus: Menus.fromJson(json['menus']),
-        customerReviews: List<CustomerReview>.from(json['customerReviews']
-            .map((item) => CustomerReview.fromJson(item))),
+        customerReviews: List<CustomerReview>.from(
+          json['customerReviews'].map(
+            (Map<String, dynamic> item) => {
+              CustomerReview.fromJson(item),
+            },
+          ),
+        ),
       );
 
   Map<String, dynamic> toMap() => {
@@ -98,9 +108,19 @@ class Menus {
 
   factory Menus.fromJson(Map<String, dynamic> json) => Menus(
         foods: List<MenusItem>.from(
-            json['foods'].map((item) => MenusItem.fromJson(item))),
+          json['foods'].map(
+            (Map<String, dynamic> item) => {
+              MenusItem.fromJson(item),
+            },
+          ),
+        ),
         drinks: List<MenusItem>.from(
-            json['drinks'].map((item) => MenusItem.fromJson(item))),
+          json['drinks'].map(
+            (Map<String, dynamic> item) => {
+              MenusItem.fromJson(item),
+            },
+          ),
+        ),
       );
 }
 

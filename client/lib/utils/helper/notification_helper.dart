@@ -15,9 +15,9 @@ import '../navigation.dart';
 final selectNotificationSubject = BehaviorSubject<String?>();
 
 class NotificationHelper {
-  static const _channelId = "1";
-  static const _channelName = "channel_01";
-  static const _channelDescription = "Restaurant App";
+  static const _channelId = '1';
+  static const _channelName = 'channel_01';
+  static const _channelDescription = 'Restaurant App';
   static NotificationHelper? _instance;
 
   NotificationHelper._internal() {
@@ -96,7 +96,7 @@ class NotificationHelper {
       iOS: iOSPlatformChannelSpecifics,
     );
 
-    var titleNotification = "<b>Restaurant Notification</b>";
+    var titleNotification = '<b>Restaurant Notification</b>';
     var titleNews = restaurantList.name;
 
     await flutterLocalNotificationsPlugin.show(

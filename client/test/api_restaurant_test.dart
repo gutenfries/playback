@@ -35,7 +35,7 @@ void main() {
   });
 
   test('=> Failed to Get Restaurant by Id', () {
-    String id = "rqdv5juczeskfw1e8671";
+    String id = 'rqdv5juczeskfw1e8671';
 
     when(client
             .get(Uri.parse('https://restaurant-api.dicoding.dev/detail/$id')))

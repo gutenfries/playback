@@ -71,7 +71,7 @@ class FormFieldWidget extends StatelessWidget {
             color: grayColor,
           ),
           counter: null,
-          counterText: "",
+          counterText: '',
           filled: true,
           isDense: true,
           errorMaxLines: 1,

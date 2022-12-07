@@ -68,7 +68,8 @@ class ApiRestaurant {
     );
     if (response.statusCode == 201) {
       return;
-    } else if (response == null) {
+      // ignore: unnecessary_null_comparison
+    } else if (response == null || response.statusCode == 0) {
       throw Exception('No Internet Connection');
     } else {
       throw Exception('Failed to Add Review');

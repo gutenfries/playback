@@ -71,7 +71,12 @@ class PopularItems {
   });
 }
 
-void addPopularItem(nameItem, ratingRestaurant, itemType, nameRestaurant) {
+void addPopularItem(
+  String nameItem,
+  dynamic ratingRestaurant,
+  String itemType,
+  String nameRestaurant,
+) {
   popularItemsList.add(
     PopularItems(
       nameItem: nameItem,
