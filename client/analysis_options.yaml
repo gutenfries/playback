@@ -18,10 +18,7 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   exclude:
-    - lib/bridge_generated.dart
-    - lib/bridge_generated.io.dart
-    - lib/bridge_generated.web.dart
-    - lib/bridge_definitions.dart
+    - lib/ffi/*
   errors:
     invalid_assignment: warning
     missing_return: error

@@ -1,25 +1,110 @@
-import 'dart:io' show Platform;
+import 'dart:io';
 
-import 'package:playback/model.dart';
-import 'package:playback/widgets/playback_app.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:playback/routes/register_routes.dart';
+import 'package:playback/utils/helper/background_service_helper.dart';
+import 'package:playback/utils/helper/database_helper.dart';
+import 'package:playback/utils/helper/notification_helper.dart';
+import 'package:playback/utils/helper/preference_settings_helper.dart';
+import 'package:playback/utils/navigation.dart';
+import 'package:playback/utils/provider/notification_scheduling_provider.dart';
+import 'package:playback/utils/provider/preference_settings_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:window_size/window_size.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'utils/utils.dart';
+import 'routes/routes.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final NotificationHelper notificationHelper = NotificationHelper();
+  final BackgroundServiceHelper backgroundServiceHelper =
+      BackgroundServiceHelper();
 
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowMinSize(const Size(400, 600));
+  backgroundServiceHelper.initializeIsolate();
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+  await notificationHelper.initNotification(flutterLocalNotificationsPlugin);
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final NotificationHelper notificationHelper = NotificationHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    notificationHelper
+        .configureSelectNotificationSubject(Routes.restaurantDetailScreen);
   }
 
-  runApp(
-    MultiProvider(
+  void checkAlarmNotification(
+      PreferenceSettingsProvider preferenceSettingsProvider) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final notif = Provider.of<NotificationSchedulingProvider>(
+          Navigation.getContext(),
+          listen: false);
+
+      if (preferenceSettingsProvider.isDailyNotificationActive) {
+        // Check shared prefs alarm is true, then set notif schedule to be active
+        notif.notifScheduleNews(
+            preferenceSettingsProvider.isDailyNotificationActive);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => DayHandler()),
-        ChangeNotifierProvider(create: (context) => CabinManager()),
+        ChangeNotifierProvider(
+          create: (_) => RestaurantFavoriteProvider(
+            databaseHelper: DatabaseHelper(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PreferenceSettingsProvider(
+            preferenceSettingsHelper: PreferenceSettingsHelper(
+              sharedPreferences: SharedPreferences.getInstance(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => NotificationSchedulingProvider(),
+        ),
       ],
-      child: const CabinBookingApp(),
-    ),
-  );
+      child: Consumer<PreferenceSettingsProvider>(
+        builder: (context, preferenceSettingsProvider, _) {
+          checkAlarmNotification(preferenceSettingsProvider);
+          return MaterialApp(
+            title: 'Food Hub App',
+            theme: preferenceSettingsProvider.themeData,
+            navigatorKey: navigatorKey,
+            initialRoute: Routes.splashScreen,
+            routes: routesApp,
+            debugShowCheckedModeBanner: false,
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
+  }
 }
