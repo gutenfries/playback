@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'en_US.dart';
-import 'pt_BR.dart';
+import 'translations/en_US.dart';
+import 'translations/pt_BR.dart';
 
 class TranslationService extends Translations {
   static Locale? get locale => Get.deviceLocale;

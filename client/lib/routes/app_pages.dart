@@ -1,6 +1,6 @@
 import 'package:playback/screens/auth/auth.dart';
 import 'package:playback/screens/home/home.dart';
-import 'package:playback/screens/me/cards/cards_screen.dart';
+import 'package:playback/shared/shared.dart';
 import 'package:playback/screens/screens.dart';
 import 'package:get/get.dart';
 

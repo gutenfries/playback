@@ -7,9 +7,9 @@ import 'package:playback/shared/shared.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeController extends GetxController {
+class SettingsController extends GetxController {
   final ApiRepository apiRepository;
-  HomeController({required this.apiRepository});
+  SettingsController({required this.apiRepository});
 
   var currentTab = MainTabs.home.obs;
   var users = Rxn<UsersResponse>();
@@ -18,7 +18,6 @@ class HomeController extends GetxController {
   late MainTab mainTab;
   late DiscoverTab discoverTab;
   late ResourceTab resourceTab;
-  late InboxTab inboxTab;
   late MeTab meTab;
 
   @override
@@ -30,7 +29,6 @@ class HomeController extends GetxController {
 
     discoverTab = const DiscoverTab();
     resourceTab = const ResourceTab();
-    inboxTab = const InboxTab();
     meTab = const MeTab();
   }
 
@@ -77,10 +75,8 @@ class HomeController extends GetxController {
         return 1;
       case MainTabs.resource:
         return 2;
-      case MainTabs.inbox:
-        return 3;
       case MainTabs.me:
-        return 4;
+        return 3;
       default:
         return 0;
     }
@@ -95,8 +91,6 @@ class HomeController extends GetxController {
       case 2:
         return MainTabs.resource;
       case 3:
-        return MainTabs.inbox;
-      case 4:
         return MainTabs.me;
       default:
         return MainTabs.home;

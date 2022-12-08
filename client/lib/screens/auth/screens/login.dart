@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playback/shared/shared.dart';
 import 'package:get/get.dart';
 
-import 'auth_controller.dart';
+import '../controller.dart';
 
 class LoginScreen extends StatelessWidget {
   final AuthController controller = Get.arguments;

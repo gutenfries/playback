@@ -1,5 +1,5 @@
-export 'auth_binding.dart';
-export 'auth_controller.dart';
-export 'auth_screen.dart';
-export 'login_screen.dart';
-export 'register_screen.dart';
+export 'binding.dart';
+export 'controller.dart';
+export 'screens/auth.dart';
+export 'screens/login.dart';
+export 'screens/register.dart';

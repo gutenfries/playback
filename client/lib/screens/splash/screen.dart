@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playback/shared/shared.dart';
 
+// TODO: add splash screen
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

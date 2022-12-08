@@ -3,8 +3,6 @@ import 'package:playback/models/bank_card.dart';
 import 'package:playback/shared/shared.dart';
 import 'package:playback/shared/widgets/focused_menu/focused_menu_holder.dart';
 
-import 'bank_card_box.dart';
-
 class CardsScreen extends StatefulWidget {
   const CardsScreen({super.key});
 

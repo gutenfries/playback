@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'shared/services/services.dart';
+import 'package:playback/shared/services/services.dart';
 
 class DenpendencyInjection {
   static Future<void> init() async {

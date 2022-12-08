@@ -11,6 +11,7 @@ class SplashController extends GetxController {
     await Future.delayed(
       const Duration(milliseconds: 2000),
     );
+
     var storage = Get.find<SharedPreferences>();
     try {
       if (storage.getString(StorageConstants.token) != null) {
@@ -23,6 +24,7 @@ class SplashController extends GetxController {
         );
       }
     } catch (e) {
+      print(e);
       Get.toNamed(
         Routes.auth,
       );

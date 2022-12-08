@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:playback/shared/shared.dart';
 import 'package:get/get.dart';
+import 'package:playback/api/api.dart';
 
-import 'app_binding.dart';
-import 'di.dart';
-import 'lang/lang.dart';
+import 'i18n/i18n.dart';
 import 'routes/routes.dart';
 import 'theme/theme.dart';
 
@@ -54,4 +53,12 @@ void configLoading() {
     ..userInteractions = false
     ..dismissOnTap = false
     ..animationStyle = EasyLoadingAnimationStyle.scale;
+}
+
+class AppBinding extends Bindings {
+  @override
+  void dependencies() async {
+    Get.put(ApiProvider(), permanent: true);
+    Get.put(ApiRepository(apiProvider: Get.find()), permanent: true);
+  }
 }

@@ -6,9 +6,7 @@ class NavigatorHelper {
   }) {
     int count = 0;
     while (count < popCount) {
-      Get.back(
-        result: 'pop',
-      );
+      Get.back();
       count++;
     }
   }

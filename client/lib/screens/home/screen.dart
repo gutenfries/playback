@@ -40,12 +40,6 @@ class HomeScreen extends GetView<HomeController> {
             'icon_resource.svg',
           ),
           _buildNavigationBarItem(
-            'Inbox',
-            MainTabs.inbox == controller.currentTab.value
-                ? 'icon_inbox_activited.svg'
-                : 'icon_inbox.svg',
-          ),
-          _buildNavigationBarItem(
             'Me',
             MainTabs.me == controller.currentTab.value
                 ? 'icon_me_activited.svg'
@@ -73,8 +67,6 @@ class HomeScreen extends GetView<HomeController> {
         return controller.discoverTab;
       case MainTabs.resource:
         return controller.resourceTab;
-      case MainTabs.inbox:
-        return controller.inboxTab;
       case MainTabs.me:
         return controller.meTab;
       default:

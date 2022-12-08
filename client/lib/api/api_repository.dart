@@ -11,7 +11,7 @@ class ApiRepository {
   final ApiProvider apiProvider;
 
   Future<LoginResponse?> login(LoginRequest data) async {
-    final res = await apiProvider.login('/api/login', data);
+    final res = await apiProvider.login(data);
     if (res.statusCode == 200) {
       return LoginResponse.fromJson(res.body!);
     }
@@ -19,7 +19,7 @@ class ApiRepository {
   }
 
   Future<RegisterResponse?> register(RegisterRequest data) async {
-    final res = await apiProvider.register('/api/register', data);
+    final res = await apiProvider.register(data);
     if (res.statusCode == 200) {
       return RegisterResponse.fromJson(res.body!);
     }
@@ -27,7 +27,7 @@ class ApiRepository {
   }
 
   Future<UsersResponse?> getUsers() async {
-    final res = await apiProvider.getUsers('/api/users?page=1&per_page=12');
+    final res = await apiProvider.getUsers();
     if (res.statusCode == 200) {
       return UsersResponse.fromJson(res.body!);
     }

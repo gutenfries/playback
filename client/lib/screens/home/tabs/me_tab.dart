@@ -98,7 +98,8 @@ class MeTab extends GetView<HomeController> {
             width: 110,
             child: CachedNetworkImage(
               fit: BoxFit.fill,
-              imageUrl: controller.user.value!.avatar ??
+              imageUrl:
+                  // controller.user.value!.avatar ??
                   'https://reqres.in/img/faces/1-image.jpg',
               placeholder: (context, url) => const Image(
                 image: AssetImage('assets/images/icon_success.png'),
