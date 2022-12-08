@@ -1,110 +1,57 @@
-import 'dart:io';
-
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:playback/routes/register_routes.dart';
-import 'package:playback/utils/helper/background_service_helper.dart';
-import 'package:playback/utils/helper/database_helper.dart';
-import 'package:playback/utils/helper/notification_helper.dart';
-import 'package:playback/utils/helper/preference_settings_helper.dart';
-import 'package:playback/utils/navigation.dart';
-import 'package:playback/utils/provider/notification_scheduling_provider.dart';
-import 'package:playback/utils/provider/preference_settings_provider.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'utils/utils.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:playback/shared/shared.dart';
+import 'package:get/get.dart';
+
+import 'app_binding.dart';
+import 'di.dart';
+import 'lang/lang.dart';
 import 'routes/routes.dart';
+import 'theme/theme.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final NotificationHelper notificationHelper = NotificationHelper();
-  final BackgroundServiceHelper backgroundServiceHelper =
-      BackgroundServiceHelper();
+  await DenpendencyInjection.init();
 
-  backgroundServiceHelper.initializeIsolate();
-  if (Platform.isAndroid) {
-    await AndroidAlarmManager.initialize();
-  }
-  await notificationHelper.initNotification(flutterLocalNotificationsPlugin);
-
-  runApp(const MyApp());
+  runApp(const App());
+  configLoading();
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final NotificationHelper notificationHelper = NotificationHelper();
-
-  @override
-  void initState() {
-    super.initState();
-    notificationHelper
-        .configureSelectNotificationSubject(Routes.restaurantDetailScreen);
-  }
-
-  void checkAlarmNotification(
-      PreferenceSettingsProvider preferenceSettingsProvider) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final notif = Provider.of<NotificationSchedulingProvider>(
-          Navigation.getContext(),
-          listen: false);
-
-      if (preferenceSettingsProvider.isDailyNotificationActive) {
-        // Check shared prefs alarm is true, then set notif schedule to be active
-        notif.notifScheduleNews(
-            preferenceSettingsProvider.isDailyNotificationActive);
-      }
-    });
-  }
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => RestaurantFavoriteProvider(
-            databaseHelper: DatabaseHelper(),
-          ),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => PreferenceSettingsProvider(
-            preferenceSettingsHelper: PreferenceSettingsHelper(
-              sharedPreferences: SharedPreferences.getInstance(),
-            ),
-          ),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => NotificationSchedulingProvider(),
-        ),
-      ],
-      child: Consumer<PreferenceSettingsProvider>(
-        builder: (context, preferenceSettingsProvider, _) {
-          checkAlarmNotification(preferenceSettingsProvider);
-          return MaterialApp(
-            title: 'Food Hub App',
-            theme: preferenceSettingsProvider.themeData,
-            navigatorKey: navigatorKey,
-            initialRoute: Routes.splashScreen,
-            routes: routesApp,
-            debugShowCheckedModeBanner: false,
-          );
-        },
-      ),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      enableLog: true,
+      initialRoute: Routes.splash,
+      defaultTransition: Transition.fade,
+      getPages: AppPages.routes,
+      initialBinding: AppBinding(),
+      smartManagement: SmartManagement.keepFactory,
+      title: 'Flutter GetX Boilerplate',
+      theme: ThemeConfig.lightTheme,
+      locale: TranslationService.locale,
+      fallbackLocale: TranslationService.fallbackLocale,
+      translations: TranslationService(),
+      builder: EasyLoading.init(),
     );
   }
+}
 
-  @override
-  void dispose() {
-    selectNotificationSubject.close();
-    super.dispose();
-  }
+void configLoading() {
+  EasyLoading.instance
+    ..indicatorType = EasyLoadingIndicatorType.threeBounce
+    ..loadingStyle = EasyLoadingStyle.custom
+    // ..indicatorSize = 45.0
+    ..radius = 10.0
+    // ..progressColor = Colors.yellow
+    ..backgroundColor = ColorConstants.lightGray
+    ..indicatorColor = hexToColor('#64DEE0')
+    ..textColor = hexToColor('#64DEE0')
+    // ..maskColor = Colors.red
+    ..userInteractions = false
+    ..dismissOnTap = false
+    ..animationStyle = EasyLoadingAnimationStyle.scale;
 }

@@ -14,30 +14,20 @@ dependencies:
   flutter_rust_bridge: ^1.45.0
   fluent_ui: ^4.1.0
   cupertino_icons: ^1.0.5
-  hexcolor: ^2.0.7
-  flash: ^2.0.3+1
-  http: ^0.13.4
-  provider: ^6.0.1
-  path_provider: ^2.0.1
-  sqflite: ^2.1.0+1
-  shared_preferences: ^2.0.11
-  android_alarm_manager_plus: ^2.1.0
-  rxdart: ^0.27.0
-  flutter_local_notifications: ^11.0.0
-  intl: ^0.17.0
-  inspector: ^1.1.1
-  inspection:
-    git:
-      url: https://github.com/radensaleh/inspection.git
-      ref: master
+  get: ^4.6.5
+  shared_preferences: ^2.0.15
+  wave: ^0.2.2
+  fluttertoast: ^8.0.9
+  flutter_easyloading: ^3.0.5
+  flutter_svg: ^1.1.1+1
+  flutter_staggered_grid_view: ^0.6.2
+  cached_network_image: ^3.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   ffigen: ^6.0.1
-  mockito: ^5.3.2
-  build_runner: ^2.1.2
 
 flutter:
   generate: true
@@ -45,10 +35,4 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/icons/
-    - assets/json/
-
-  fonts:
-    - family: sofia
-      fonts:
-        - asset: assets/fonts/sofiapro-light.otf
+    - assets/svgs/
