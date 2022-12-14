@@ -1,25 +1,24 @@
-# We include Corrosion inline here, but ideally in a project with
-# many dependencies we would need to install Corrosion on the system.
-# See instructions on https://github.com/AndrewGaspar/corrosion#cmake-install
-# Once done, uncomment this line:
-# find_package(Corrosion REQUIRED)
+# TODO: Enable Cargo NDK linking
 
-include(FetchContent)
+# # We include Corrosion inline here, but ideally in a project with # many
+# dependencies we would need to install Corrosion on the system. # See
+# instructions on https://github.com/AndrewGaspar/corrosion#cmake-install # Once
+# done, uncomment this line: # find_package(Corrosion REQUIRED)
 
-FetchContent_Declare(
-    Corrosion
-    GIT_REPOSITORY https://github.com/AndrewGaspar/corrosion.git
-    GIT_TAG origin/master # Optionally specify a version tag or branch here
-)
+# include(FetchContent)
 
-FetchContent_MakeAvailable(Corrosion)
+# FetchContent_Declare( Corrosion GIT_REPOSITORY
+# https://github.com/AndrewGaspar/corrosion.git GIT_TAG origin/master #
+# Optionally specify a version tag or branch here )
 
-corrosion_import_crate(MANIFEST_PATH ../native/Cargo.toml)
+# FetchContent_MakeAvailable(Corrosion)
 
-# Flutter-specific
+# corrosion_import_crate(MANIFEST_PATH ../native/Cargo.toml)
 
-set(CRATE_NAME "native")
+# # Flutter-specific
 
-target_link_libraries(${BINARY_NAME} PRIVATE ${CRATE_NAME})
+# set(CRATE_NAME "native")
 
-list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${CRATE_NAME}-shared>)
+# target_link_libraries(${BINARY_NAME} PRIVATE ${CRATE_NAME})
+
+# list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${CRATE_NAME}-shared>)

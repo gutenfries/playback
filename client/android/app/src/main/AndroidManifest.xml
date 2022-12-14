@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.playback">
+    package="com.playback">
    <application
         android:label="playback"
         android:name="${applicationName}"

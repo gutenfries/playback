@@ -6,7 +6,6 @@
 		"marcelovelasquez.flutter-tree",
 		"circlecodesolution.ccs-flutter-color",
 		"aksharpatel47.vscode-flutter-helper",
-		"localizely.flutter-intl",
-		"ms-vscode.cmake-tools"
+		"localizely.flutter-intl"
 	]
 }

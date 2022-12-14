@@ -23,6 +23,7 @@ analyzer:
     strict-raw-types: true
   exclude:
     - lib/ffi/*
+    - lib/icons/*
   errors:
     invalid_assignment: warning
     missing_return: error
