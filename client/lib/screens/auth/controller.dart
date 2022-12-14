@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playback/api/api.dart';
 import 'package:playback/models/models.dart';
-import 'package:playback/routes/app_pages.dart';
+import 'package:playback/routes/routes.dart';
 import 'package:playback/shared/shared.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

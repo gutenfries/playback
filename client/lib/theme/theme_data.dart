@@ -95,7 +95,7 @@ class ThemeConfig {
       inputDecorationTheme: InputDecorationTheme(
         errorStyle: TextStyle(color: error),
         labelStyle: TextStyle(
-          fontFamily: 'Rubik',
+          fontFamily: 'SegeoUI VF',
           fontWeight: FontWeight.w600,
           fontSize: 16.0,
           color: primaryText.withOpacity(0.5),
@@ -106,7 +106,7 @@ class ThemeConfig {
           fontWeight: FontWeight.w300,
         ),
       ),
-      fontFamily: 'Rubik',
+      fontFamily: 'SegeoUI VF',
       unselectedWidgetColor: hexToColor('#DADCDD'),
       textTheme: TextTheme(
         headline1: baseTextTheme.headline1!.copyWith(

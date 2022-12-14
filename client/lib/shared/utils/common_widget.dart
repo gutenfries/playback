@@ -21,7 +21,7 @@ class CommonWidget {
       centerTitle: true,
       title: Text(
         title,
-        style: TextStyle(color: color, fontFamily: 'Rubik'),
+        style: TextStyle(color: color, fontFamily: 'SegeoUI VF'),
       ),
       backgroundColor: Colors.transparent,
       elevation: 0.0,

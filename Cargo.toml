@@ -1,6 +1,6 @@
 [workspace]
 members = ["core/", "core/image_utils", "core/midi_utils", "cli/"]
-exclude = ["client/native"]
+exclude = ["client/native", "example/native"]
 
 [workspace.metadata]
 cargo-features = ["resolver"]

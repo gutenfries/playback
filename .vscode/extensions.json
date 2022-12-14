@@ -6,7 +6,7 @@
 		"marcelovelasquez.flutter-tree",
 		"circlecodesolution.ccs-flutter-color",
 		"aksharpatel47.vscode-flutter-helper",
-		"localizely.flutter-intl"
-	],
-	"unwantedRecommendations": ["ms-vscode.cmake-tools", "twxs.cmake"]
+		"localizely.flutter-intl",
+		"ms-vscode.cmake-tools"
+	]
 }

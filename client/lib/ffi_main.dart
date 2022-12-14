@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playback/ffi/ffi.dart'
+import 'ffi/ffi.dart'
     if (dart.library.html) 'package:playback/ffi/ffi_web.dart';
 
 void main() {

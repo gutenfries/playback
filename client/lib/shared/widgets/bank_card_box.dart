@@ -26,7 +26,7 @@ class BankCardBox extends StatelessWidget {
             style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
-                fontFamily: 'Rubik',
+                fontFamily: 'SegeoUI VF',
                 fontWeight: FontWeight.w600),
             textAlign: TextAlign.center,
           ),

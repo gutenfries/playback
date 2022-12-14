@@ -22,6 +22,7 @@ dependencies:
   flutter_svg: ^1.1.1+1
   flutter_staggered_grid_view: ^0.6.2
   cached_network_image: ^3.2.1
+  fluentui_system_icons: ^1.1.189
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +37,8 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+
+  fonts:
+    - family: SegoeUI VF
+      fonts:
+        - asset: assets/fonts/SegoeUI-VF.ttf
