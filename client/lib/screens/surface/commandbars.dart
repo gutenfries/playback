@@ -6,7 +6,7 @@ class CommandBarsPage extends ScrollablePage {
   final simpleCommandBarItems = <CommandBarItem>[
     CommandBarBuilderItem(
       builder: (context, mode, w) => Tooltip(
-        message: "Create something new!",
+        message: 'Create something new!',
         child: w,
       ),
       wrappedItem: CommandBarButton(
@@ -17,7 +17,7 @@ class CommandBarsPage extends ScrollablePage {
     ),
     CommandBarBuilderItem(
       builder: (context, mode, w) => Tooltip(
-        message: "Delete what is currently selected!",
+        message: 'Delete what is currently selected!',
         child: w,
       ),
       wrappedItem: CommandBarButton(

@@ -61,8 +61,8 @@ class SponsorDialog extends StatelessWidget {
         Link(
           uri: Uri.parse('https://www.patreon.com/bdlukaa'),
           builder: (context, open) => FilledButton(
-            child: const Text('Become a Sponsor'),
             onPressed: open,
+            child: const Text('Become a Sponsor'),
           ),
         ),
       ],

@@ -32,35 +32,6 @@ class _FlyoutShowcaseState extends State<FlyoutPage> {
         Text('A button with a Flyout', style: typography.subtitle),
         const SizedBox(height: 10.0),
         CardHighlight(
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Flyout(
-              controller: buttonController,
-              content: (context) {
-                return FlyoutContent(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'All items will be removed. Do you want to continue?',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 12.0),
-                      Button(
-                        child: const Text('Yes, empty my cart'),
-                        onPressed: buttonController.close,
-                      ),
-                    ],
-                  ),
-                );
-              },
-              child: Button(
-                child: const Text('Empty cart'),
-                onPressed: buttonController.open,
-              ),
-            ),
-          ),
           codeSnippet:
               '''// define the controller. It'll be responsible to open/close the flyout programatically
 FlyoutController buttonController = FlyoutController();
@@ -93,6 +64,35 @@ Flyout(
     onPressed: buttonController.open,
   )
 )''',
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Flyout(
+              controller: buttonController,
+              content: (context) {
+                return FlyoutContent(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'All items will be removed. Do you want to continue?',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 12.0),
+                      Button(
+                        onPressed: buttonController.close,
+                        child: const Text('Yes, empty my cart'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Button(
+                onPressed: buttonController.open,
+                child: const Text('Empty cart'),
+              ),
+            ),
+          ),
         ),
         const SizedBox(height: 20.0),
         DefaultTextStyle(

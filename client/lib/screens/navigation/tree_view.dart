@@ -30,19 +30,6 @@ class _TreeViewPageState extends State<TreeViewPage> with PageMixin {
           content: const Text('A TreeView with Multi-selection enabled'),
         ),
         CardHighlight(
-          child: TreeView(
-            key: treeViewKey,
-            selectionMode: TreeViewSelectionMode.multiple,
-            shrinkWrap: true,
-            items: items,
-            onItemInvoked: (item, reason) async =>
-                debugPrint('onItemInvoked(reason=$reason): $item'),
-            onSelectionChanged: (selectedItems) async => debugPrint(
-                'onSelectionChanged: ${selectedItems.map((i) => i.value)}'),
-            onSecondaryTap: (item, details) async {
-              debugPrint('onSecondaryTap $item at ${details.globalPosition}');
-            },
-          ),
           codeSnippet: r'''final items = [
   TreeViewItem(
     content: const Text('Personal Documents'),
@@ -104,25 +91,22 @@ TreeView(
   },
 )
 ''',
+          child: TreeView(
+            key: treeViewKey,
+            selectionMode: TreeViewSelectionMode.multiple,
+            shrinkWrap: true,
+            items: items,
+            onItemInvoked: (item, reason) async =>
+                debugPrint('onItemInvoked(reason=$reason): $item'),
+            onSelectionChanged: (selectedItems) async => debugPrint(
+                'onSelectionChanged: ${selectedItems.map((i) => i.value)}'),
+            onSecondaryTap: (item, details) async {
+              debugPrint('onSecondaryTap $item at ${details.globalPosition}');
+            },
+          ),
         ),
         subtitle(content: const Text('A TreeView with lazy-loading items')),
         CardHighlight(
-          child: Column(
-            children: [
-              TreeView(
-                shrinkWrap: true,
-                items: lazyItems,
-                onItemInvoked: (item, reason) async =>
-                    debugPrint('onItemInvoked(reason=$reason): $item'),
-                onSelectionChanged: (selectedItems) async => debugPrint(
-                    'onSelectionChanged: ${selectedItems.map((i) => i.value)}'),
-                onSecondaryTap: (item, details) async {
-                  debugPrint(
-                      'onSecondaryTap $item at ${details.globalPosition}');
-                },
-              ),
-            ],
-          ),
           codeSnippet: r'''final lazyItems = [
   TreeViewItem(
     content: const Text('Item with lazy loading'),
@@ -176,6 +160,22 @@ TreeView(
           },
 )
 ''',
+          child: Column(
+            children: [
+              TreeView(
+                shrinkWrap: true,
+                items: lazyItems,
+                onItemInvoked: (item, reason) async =>
+                    debugPrint('onItemInvoked(reason=$reason): $item'),
+                onSelectionChanged: (selectedItems) async => debugPrint(
+                    'onSelectionChanged: ${selectedItems.map((i) => i.value)}'),
+                onSecondaryTap: (item, details) async {
+                  debugPrint(
+                      'onSecondaryTap $item at ${details.globalPosition}');
+                },
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -212,21 +212,21 @@ TreeView(
           content: const Text('Tax Documents'),
           value: 'tax_docs',
           children: [
-            TreeViewItem(content: const Text('2017'), value: "tax_2017"),
+            TreeViewItem(content: const Text('2017'), value: 'tax_2017'),
             TreeViewItem(
               content: const Text('Middle Years'),
               value: 'tax_middle_years',
               children: [
-                TreeViewItem(content: const Text('2018'), value: "tax_2018"),
+                TreeViewItem(content: const Text('2018'), value: 'tax_2018'),
                 TreeViewItem(
                     content: const Text('2019'),
-                    value: "tax_2019",
+                    value: 'tax_2019',
                     selected: true),
-                TreeViewItem(content: const Text('2020'), value: "tax_2020"),
+                TreeViewItem(content: const Text('2020'), value: 'tax_2020'),
               ],
             ),
-            TreeViewItem(content: const Text('2021'), value: "tax_2021"),
-            TreeViewItem(content: const Text('Current Year'), value: "tax_cur"),
+            TreeViewItem(content: const Text('2021'), value: 'tax_2021'),
+            TreeViewItem(content: const Text('Current Year'), value: 'tax_cur'),
           ],
         ),
       ],

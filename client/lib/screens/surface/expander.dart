@@ -62,6 +62,14 @@ class _ExpanderPageState extends State<ExpanderPage> with PageMixin {
           ),
         ),
         CardHighlight(
+          codeSnippet: '''Expander(
+  leading: RadioButton(
+    checked: checked,
+    onChanged: (v) => setState(() => checked = v),
+  ),
+  header: Text('This text is in header'),
+  content: Text('This text is in content'),
+)''',
           child: Expander(
             header: const Text('Choose your crost'),
             onStateChanged: (open) => setState(() => crostOpen = open),
@@ -108,17 +116,18 @@ class _ExpanderPageState extends State<ExpanderPage> with PageMixin {
               ),
             ]),
           ),
-          codeSnippet: '''Expander(
-  leading: RadioButton(
-    checked: checked,
-    onChanged: (v) => setState(() => checked = v),
-  ),
-  header: Text('This text is in header'),
-  content: Text('This text is in content'),
-)''',
         ),
         subtitle(content: const Text('Scrollable content')),
         const CardHighlight(
+          codeSnippet: '''Expander(
+  header: Text('Open to see the scrollable text'),
+  content: SizedBox(
+    height: 300,
+    child: SingleChildScrollView(
+      child: Text('A LONG TEXT HERE'),
+    ),
+  ),
+)''',
           child: Expander(
             header: Text('Open to see the scrollable text'),
             content: SizedBox(
@@ -138,18 +147,28 @@ Fusce nunc neque, imperdiet id justo non, porttitor finibus massa. Ut quis risus
               ),
             ),
           ),
-          codeSnippet: '''Expander(
-  header: Text('Open to see the scrollable text'),
-  content: SizedBox(
-    height: 300,
-    child: SingleChildScrollView(
-      child: Text('A LONG TEXT HERE'),
-    ),
-  ),
-)''',
         ),
         subtitle(content: const Text('Expander opened programatically')),
         CardHighlight(
+            codeSnippet: '''final expanderKey = GlobalKey<ExpanderState>();
+
+Expander(
+  key: expanderKey,
+  header: Text('This text is in header'),
+  content: Text('This text is in content'),
+  onStateChanged: (open) {
+    print('state changed to open=$open');
+  },
+)
+
+/// Toggles the current expander state
+/// 
+/// if it's open, now it's closed, and vice versa
+void toggle() {
+  final open = expanderKey.currentState?.open ?? false;
+
+  expanderKey.currentState?.open = !open;
+}''',
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Expanded(
                 child: Expander(
@@ -169,26 +188,7 @@ Fusce nunc neque, imperdiet id justo non, porttitor finibus massa. Ut quis risus
                 },
                 content: Text(open ? 'Close' : 'Open'),
               ),
-            ]),
-            codeSnippet: '''final expanderKey = GlobalKey<ExpanderState>();
-
-Expander(
-  key: expanderKey,
-  header: Text('This text is in header'),
-  content: Text('This text is in content'),
-  onStateChanged: (open) {
-    print('state changed to open=$open');
-  },
-)
-
-/// Toggles the current expander state
-/// 
-/// if it's open, now it's closed, and vice versa
-void toggle() {
-  final open = expanderKey.currentState?.open ?? false;
-
-  expanderKey.currentState?.open = !open;
-}'''),
+            ])),
       ],
     );
   }

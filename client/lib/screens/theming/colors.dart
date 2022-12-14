@@ -130,9 +130,9 @@ class ColorsPage extends ScrollablePage {
           ),
           const SizedBox(height: 10),
           Wrap(
-            children: accent,
             runSpacing: 10,
             spacing: 10,
+            children: accent,
           ),
         ]),
       ),

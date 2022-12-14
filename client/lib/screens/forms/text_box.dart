@@ -26,43 +26,32 @@ class TextBoxPage extends ScrollablePage {
       ),
       subtitle(content: const Text('A simple TextBox')),
       CardHighlight(
+        codeSnippet: '''TextBox()''',
         child: Row(children: const [
           Expanded(child: TextBox()),
           SizedBox(width: 10.0),
           Expanded(child: TextBox(enabled: false, placeholder: 'Disabled'))
         ]),
-        codeSnippet: '''TextBox()''',
       ),
       subtitle(
         content: const Text('A TextBox with a header and placeholder text'),
       ),
       const CardHighlight(
-        child: TextBox(
-          header: 'Enter your name:',
-          placeholder: 'Name',
-          expands: false,
-        ),
         codeSnippet: '''TextBox(
   header: 'Enter your name:',
   placeholder: 'Name',
   expands: false,
 ),''',
+        child: TextBox(
+          header: 'Enter your name:',
+          placeholder: 'Name',
+          expands: false,
+        ),
       ),
       subtitle(
         content: const Text('A read-only TextBox with various properties set'),
       ),
       const CardHighlight(
-        child: TextBox(
-          readOnly: true,
-          placeholder: 'I am super excited to be here!',
-          style: TextStyle(
-            fontFamily: 'Arial',
-            fontSize: 24.0,
-            letterSpacing: 8,
-            color: Color(0xFF5178BE),
-            fontStyle: FontStyle.italic,
-          ),
-        ),
         codeSnippet: '''TextBox(
   readOnly: true,
   placeholder: 'I am super excited to be here',
@@ -74,15 +63,26 @@ class TextBoxPage extends ScrollablePage {
     fontStyle: FontStyle.italic,
   ),
 ),''',
+        child: TextBox(
+          readOnly: true,
+          placeholder: 'I am super excited to be here!',
+          style: TextStyle(
+            fontFamily: 'Arial',
+            fontSize: 24.0,
+            letterSpacing: 8,
+            color: Color(0xFF5178BE),
+            fontStyle: FontStyle.italic,
+          ),
+        ),
       ),
       subtitle(content: const Text('A multi-line TextBox')),
       const CardHighlight(
-        child: TextBox(
-          maxLines: null,
-        ),
         codeSnippet: '''TextBox(
   maxLines: null,
 ),''',
+        child: TextBox(
+          maxLines: null,
+        ),
       ),
     ];
   }

@@ -74,8 +74,8 @@ class _TabViewPageState extends State<TabViewPage> with PageMixin {
                     value: tabWidthBehavior,
                     items: TabWidthBehavior.values.map((behavior) {
                       return ComboBoxItem(
-                        child: Text(behavior.name),
                         value: behavior,
+                        child: Text(behavior.name),
                       );
                     }).toList(),
                     onChanged: (behavior) {
@@ -95,8 +95,8 @@ class _TabViewPageState extends State<TabViewPage> with PageMixin {
                     value: closeButtonVisibilityMode,
                     items: CloseButtonVisibilityMode.values.map((mode) {
                       return ComboBoxItem(
-                        child: Text(mode.name),
                         value: mode,
+                        child: Text(mode.name),
                       );
                     }).toList(),
                     onChanged: (mode) {
@@ -121,6 +121,7 @@ class _TabViewPageState extends State<TabViewPage> with PageMixin {
           ),
         ),
         CardHighlight(
+          codeSnippet: '''''',
           child: SizedBox(
             height: 400,
             child: TabView(
@@ -155,8 +156,6 @@ class _TabViewPageState extends State<TabViewPage> with PageMixin {
               },
             ),
           ),
-          // TODO: TabView snippets
-          codeSnippet: '''''',
         ),
       ],
     );
