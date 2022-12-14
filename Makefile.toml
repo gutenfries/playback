@@ -1,6 +1,4 @@
 [env]
-CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
-CARGO_MAKE_USE_WORKSPACE_PROFILE = true
 DEV = true
 RELEASE = false
 TARGET_OS = "unknown"
@@ -10,6 +8,7 @@ DEV = false
 RELEASE = true
 
 [config]
+default_to_workspace = false
 skip_core_tasks = true
 
 [tasks.default]
@@ -75,11 +74,11 @@ args = ["clean"]
 command = "cargo"
 
 [tasks.flutter-clean]
+condition = { files_exist = ["${CARGO_MAKE_WORKING_DIRECTORY}/pubspec.yaml"] }
 args = ["clean"]
 windows.command = "flutter.bat"
 linux.command = "flutter"
 mac.command = "flutter"
-
 
 [tasks.test]
 args = ["test"]
