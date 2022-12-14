@@ -28,3 +28,4 @@ analyzer:
     invalid_assignment: warning
     missing_return: error
     dead_code: info
+    todo: ignore

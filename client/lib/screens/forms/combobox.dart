@@ -16,7 +16,7 @@ class _ComboBoxPageState extends State<ComboBoxPage> with PageMixin {
   String? selectedCat;
   double fontSize = 20.0;
   bool disabled = false;
-  final comboboxKey = GlobalKey<ComboBoxState>();
+  final comboboxKey = GlobalKey<ComboBoxState<dynamic>>();
 
   @override
   Widget build(BuildContext context) {

@@ -26,18 +26,21 @@ args = ["build", "-p", "playback_cli"]
 command = "cargo"
 
 [tasks.build-client]
+condition = { files_exist = [
+	"${CARGO_MAKE_WORKING_DIRECTORY}/client/pubspec.yaml",
+] }
 command = "flutter_rust_bridge_codegen"
 args = [
 	"--rust-input",
-	"../client/native/src/api.rs",
+	"./client/native/src/api.rs",
 	"--dart-output",
-	"../client/lib/ffi/bridge_generated.dart",
+	"./client/lib/ffi/bridge_generated.dart",
 	"--dart-decl-output",
-	"../client/lib/ffi/bridge_definitions.dart",
+	"./client/lib/ffi/bridge_definitions.dart",
 	"--c-output",
-	"../client/ios/Runner/bridge_generated.h",
+	"./client/ios/Runner/bridge_generated.h",
 	"--c-output",
-	"../client/macos/Runner/bridge_generated.h",
+	"./client/macos/Runner/bridge_generated.h",
 	"--wasm",
 ]
 

@@ -19,7 +19,9 @@ import 'routes/theming.dart' deferred as theming;
 import 'theme.dart';
 import 'widgets/deferred_widget.dart';
 
-const String appTitle = 'Fluent UI Showcase for Flutter';
+import 'ffi/ffi.dart' if (dart.library.html) 'ffi/ffi_web.dart';
+
+const String appTitle = 'api.platform();';
 
 /// Checks if the current environment is a desktop environment.
 bool get kIsDesktop {

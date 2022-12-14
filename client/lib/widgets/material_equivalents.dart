@@ -21,7 +21,7 @@ class _MaterialEquivalentsState extends State<MaterialEquivalents> {
   ];
   String? comboboxItem;
   String dropdownItem = 'Item 1';
-  final popupKey = GlobalKey<m.PopupMenuButtonState>();
+  final popupKey = GlobalKey<m.PopupMenuButtonState<dynamic>>();
 
   double sliderValue = Random().nextDouble() * 100;
 
