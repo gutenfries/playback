@@ -45,8 +45,15 @@ bool get kIsMobile {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  Platform platform = await api.platform();
+  bool isRelease = await api.rustReleaseMode();
+  print(await api.add(a: 1, b: 2));
+
+  print(platform);
+  print(isRelease);
+
   // if it's not on the web, windows or android, load the accent color
-  if (!kIsWeb &&
+  if (kIsWeb ||
       [
         TargetPlatform.windows,
         TargetPlatform.android,
