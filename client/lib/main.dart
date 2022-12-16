@@ -21,7 +21,7 @@ import 'widgets/deferred_widget.dart';
 
 import 'ffi/ffi.dart' if (dart.library.html) 'ffi/ffi_web.dart';
 
-const String appTitle = 'api.platform();';
+const String appTitle = 'Playback Beta';
 
 /// Checks if the current environment is a desktop environment.
 bool get kIsDesktop {
@@ -80,7 +80,7 @@ void main() async {
     });
   }
 
-  runApp(const MyApp());
+  runApp(const App());
 
   DeferredWidget.preload(forms.loadLibrary);
   DeferredWidget.preload(inputs.loadLibrary);
@@ -89,8 +89,8 @@ void main() async {
   DeferredWidget.preload(theming.loadLibrary);
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +104,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           color: appTheme.color,
           darkTheme: ThemeData(
+            fontFamily: 'Rubik',
             brightness: Brightness.dark,
             accentColor: appTheme.color,
             visualDensity: VisualDensity.standard,
@@ -112,6 +113,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           theme: ThemeData(
+            fontFamily: 'Rubik',
             accentColor: appTheme.color,
             visualDensity: VisualDensity.standard,
             focusTheme: FocusThemeData(

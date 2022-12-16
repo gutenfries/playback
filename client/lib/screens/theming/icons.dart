@@ -1,6 +1,8 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
+
 void showCopiedSnackbar(BuildContext context, String copiedText) {
   showSnackbar(
     context,
@@ -41,7 +43,8 @@ class _IconsPageState extends State<IconsPage> {
   Widget build(BuildContext context) {
     assert(debugCheckHasFluentTheme(context));
 
-    final entries = FluentIcons.allIcons.entries.where(
+    // final entries = FluentIcons.all.entries.where(
+    final entries = TablerIcons.all.entries.where(
       (icon) =>
           filterText.isEmpty ||
           // Remove '_'
@@ -57,13 +60,13 @@ class _IconsPageState extends State<IconsPage> {
 
     return ScaffoldPage(
       header: PageHeader(
-        title: const Text('Fluent Icons Gallery showcase'),
+        title: const Text('Tabler Icons Gallery showcase'),
         commandBar: SizedBox(
           width: 240.0,
           child: Tooltip(
             message: 'Filter by name',
             child: TextBox(
-              suffix: const Icon(FluentIcons.search),
+              suffix: Icon(TablerIcons.search),
               placeholder: 'Type to filter icons by name (e.g "logo")',
               onChanged: (value) => setState(() {
                 filterText = value;
@@ -96,7 +99,7 @@ class _IconsPageState extends State<IconsPage> {
           final e = entries.elementAt(index);
           return HoverButton(
             onPressed: () async {
-              final copyText = 'FluentIcons.${e.key}';
+              final copyText = 'TablerIcons.${e.key}';
               await FlutterClipboard.copy(copyText);
               showCopiedSnackbar(context, copyText);
             },
@@ -108,7 +111,7 @@ class _IconsPageState extends State<IconsPage> {
                 child: Tooltip(
                   useMousePosition: false,
                   message:
-                      '\nFluentIcons.${e.key}\n(tap to copy to clipboard)\n',
+                      '\nTablerIcons.${e.key}\n(tap to copy to clipboard)\n',
                   child: RepaintBoundary(
                     child: AnimatedContainer(
                       duration: FluentTheme.of(context).fasterAnimationDuration,

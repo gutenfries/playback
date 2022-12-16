@@ -69,6 +69,7 @@ class AppTheme extends ChangeNotifier {
   }
 }
 
+/// If available, returns the system-preferred accent color.
 AccentColor get systemAccentColor {
   if ((defaultTargetPlatform == TargetPlatform.windows ||
           defaultTargetPlatform == TargetPlatform.android) &&
