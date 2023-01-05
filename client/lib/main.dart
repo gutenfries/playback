@@ -1,5 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Page;
-import 'package:flutter/foundation.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
 import 'package:provider/provider.dart';
 import 'package:system_theme/system_theme.dart';
@@ -17,53 +16,35 @@ import 'routes/surfaces.dart' deferred as surfaces;
 import 'routes/theming.dart' deferred as theming;
 
 import 'theme.dart';
+import 'constants.dart';
 import 'widgets/deferred_widget.dart';
 
-import 'ffi/ffi.dart' if (dart.library.html) 'ffi/ffi_web.dart';
+import 'debug.dart';
+
+// import 'ffi/ffi.dart' if (dart.library.html) 'ffi/ffi_web.dart';
 
 const String appTitle = 'Playback Beta';
-
-/// Checks if the current environment is a desktop environment.
-bool get kIsDesktop {
-  if (kIsWeb) return false;
-  return [
-    TargetPlatform.windows,
-    TargetPlatform.linux,
-    TargetPlatform.macOS,
-  ].contains(defaultTargetPlatform);
-}
-
-/// Checks if the current environment is mobile
-bool get kIsMobile {
-  if (kIsWeb) return false;
-  return [
-    TargetPlatform.android,
-    TargetPlatform.iOS,
-  ].contains(defaultTargetPlatform);
-}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Platform platform = await api.platform();
-  bool isRelease = await api.rustReleaseMode();
-  print(await api.add(a: 1, b: 2));
-
-  print(platform);
-  print(isRelease);
-
-  // if it's not on the web, windows or android, load the accent color
-  if (kIsWeb ||
-      [
-        TargetPlatform.windows,
-        TargetPlatform.android,
-      ].contains(defaultTargetPlatform)) {
-    SystemTheme.accentColor.load();
+  if (!Constants.kIsReleaseMode) {
+    Debug.dumpEnviroment();
   }
 
+  // Platform platform = await api.platform();
+  // bool isRelease = await api.rustReleaseMode();
+  // print(await api.add(a: 1, b: 2));
+  // print(platform);
+  // print(isRelease);
+
+  // if supported, load the system accent color
+  if (Constants.kIsSystemAccentColorSupported) SystemTheme.accentColor.load();
+
+  // set the url strategy
   setPathUrlStrategy();
 
-  if (kIsDesktop) {
+  if (Constants.kIsDesktop) {
     await flutter_acrylic.Window.initialize();
     await WindowManager.instance.ensureInitialized();
     windowManager.waitUntilReadyToShow().then((_) async {
@@ -82,6 +63,8 @@ void main() async {
 
   runApp(const App());
 
+  // preload and defer the screens that are not used on startup.
+  // this will improve startup time.
   DeferredWidget.preload(forms.loadLibrary);
   DeferredWidget.preload(inputs.loadLibrary);
   DeferredWidget.preload(navigation.loadLibrary);
@@ -104,7 +87,7 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           color: appTheme.color,
           darkTheme: ThemeData(
-            fontFamily: 'Rubik',
+            fontFamily: 'SegoeUI',
             brightness: Brightness.dark,
             accentColor: appTheme.color,
             visualDensity: VisualDensity.standard,
@@ -113,7 +96,7 @@ class App extends StatelessWidget {
             ),
           ),
           theme: ThemeData(
-            fontFamily: 'Rubik',
+            fontFamily: 'SegoeUI',
             accentColor: appTheme.color,
             visualDensity: VisualDensity.standard,
             focusTheme: FocusThemeData(
@@ -412,13 +395,13 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
       appBar: NavigationAppBar(
         automaticallyImplyLeading: false,
         title: () {
-          if (kIsWeb) {
+          if (Constants.kIsWeb) {
             return const Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(appTitle),
             );
           }
-          if (kIsMobile) {
+          if (Constants.kIsMobile) {
             return const Align(
               // center, minus the width of the hamburger button
               alignment: AlignmentDirectional.centerStart,
@@ -436,7 +419,7 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
           // If Platform is Mobile, do not display dark mode toggle switch in the app bar
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 8.0),
-            child: kIsMobile
+            child: Constants.kIsMobile
                 ? null
                 : ToggleSwitch(
                     content: const Text('Dark Mode'),
@@ -451,7 +434,7 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
                   ),
           ),
           // Only display desktop controls on desktop native platforms.
-          if (kIsDesktop) const WindowButtons(),
+          if (Constants.kIsDesktop) const WindowButtons(),
         ]),
       ),
       pane: NavigationPane(

@@ -38,42 +38,33 @@ flutter:
   generate: true
   uses-material-design: true
   fonts:
-    - family: Rubik
+    - family: SegoeUI
       fonts:
-        - asset: assets/fonts/Rubik/Rubik-Regular.ttf
-        - asset: assets/fonts/Rubik/Rubik-Light.ttf
+        - asset: assets/fonts/SegoeUI/segoeui.ttf # Segoe UI
+        - asset: assets/fonts/SegoeUI/segoeuii.ttf # Segoe UI Italic
+          style: italic
+        - asset: assets/fonts/SegoeUI/segoeuil.ttf # Segoe UI Light
           weight: 300
-        - asset: assets/fonts/Rubik/Rubik-LightItalic.ttf
+        - asset: assets/fonts/SegoeUI/seguili.ttf # Segoe UI Light Italic
           weight: 300
           style: italic
-        - asset: assets/fonts/Rubik/Rubik-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Rubik/Rubik-MediumItalic.ttf
-          weight: 500
+        - asset: assets/fonts/SegoeUI/segoeuisl.ttf # Segoe UI Semilight
+          weight: 400
+        - asset: assets/fonts/SegoeUI/seguisli.ttf # Segoe UI Semilight Italic
+          weight: 400
           style: italic
-        - asset: assets/fonts/Rubik/Rubik-SemiBold.ttf
+        - asset: assets/fonts/SegoeUI/seguisb.ttf # Segoe UI Semibold
           weight: 600
-        - asset: assets/fonts/Rubik/Rubik-SemiBoldItalic.ttf
+        - asset: assets/fonts/SegoeUI/seguisbi.ttf # Segoe UI Semibold Italic
           weight: 600
           style: italic
-        - asset: assets/fonts/Rubik/Rubik-Bold.ttf
+        - asset: assets/fonts/SegoeUI/segoeuib.ttf # Segoe UI Bold
           weight: 700
-        - asset: assets/fonts/Rubik/Rubik-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Rubik/Rubik-BoldItalic.ttf
+        - asset: assets/fonts/SegoeUI/segoeuiz.ttf # Segoe UI Bold Italic
           weight: 700
-          style: italic
-        - asset: assets/fonts/Rubik/Rubik-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/Rubik/Rubik-ExtraBoldItalic.ttf
-          weight: 800
-          style: italic
-        - asset: assets/fonts/Rubik/Rubik-Black.ttf
-          weight: 900
-        - asset: assets/fonts/Rubik/Rubik-BlackItalic.ttf
-          weight: 900
           style: italic
 
+# TODO: Replace with brand
 flutter_native_splash:
   color: "#42a5f5"
-  image: assets/flutter_logo.png
+  image: assets/splash/flutter_logo.png

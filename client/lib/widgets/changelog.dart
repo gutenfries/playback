@@ -3,7 +3,9 @@ import 'package:flutter/material.dart' as m;
 import 'package:flutter_markdown/flutter_markdown.dart'
     deferred as flutter_markdown;
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
+// false positive:
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'deferred_widget.dart';

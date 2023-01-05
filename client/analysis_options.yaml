@@ -9,7 +9,7 @@ linter:
     close_sinks: true
     comment_references: true
     one_member_abstracts: true
-    only_throw_errors: true
+    only_throw_errors: false
     package_api_docs: true
     prefer_final_in_for_each: true
     use_build_context_synchronously: false
@@ -19,11 +19,11 @@ linter:
 
 analyzer:
   language:
+    # immature and causes false positives
     strict-inference: false
     strict-raw-types: true
   exclude:
     - lib/ffi/*
-    - lib/icons/*
   errors:
     invalid_assignment: warning
     missing_return: error

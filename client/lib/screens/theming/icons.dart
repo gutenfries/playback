@@ -66,7 +66,7 @@ class _IconsPageState extends State<IconsPage> {
           child: Tooltip(
             message: 'Filter by name',
             child: TextBox(
-              suffix: Icon(TablerIcons.search),
+              suffix: const Icon(TablerIcons.search),
               placeholder: 'Type to filter icons by name (e.g "logo")',
               onChanged: (value) => setState(() {
                 filterText = value;

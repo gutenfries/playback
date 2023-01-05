@@ -1,6 +1,7 @@
-import 'package:playback/main.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:url_launcher/link.dart';
+
+import 'package:playback/constants.dart';
 
 import '../models/sponsor.dart';
 import '../widgets/changelog.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> with PageMixin {
     final theme = FluentTheme.of(context);
 
     return ScaffoldPage.scrollable(
-      header: kIsMobile
+      header: Constants.kIsMobile
           ? null
           : PageHeader(
               title: const Text('Fluent UI for Flutter Showcase App'),
