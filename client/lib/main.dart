@@ -28,7 +28,8 @@ const String appTitle = 'Playback Beta';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (!Constants.kIsReleaseMode) {
+  // if either in Debug or Profile mode, dump the environment
+  if (!Constants.isReleaseMode) {
     Debug.dumpEnviroment();
   }
 
@@ -39,12 +40,13 @@ void main() async {
   // print(isRelease);
 
   // if supported, load the system accent color
-  if (Constants.kIsSystemAccentColorSupported) SystemTheme.accentColor.load();
+  if (Constants.isSystemAccentColorSupported) SystemTheme.accentColor.load();
 
   // set the url strategy
   setPathUrlStrategy();
 
-  if (Constants.kIsDesktop) {
+  // If on a desktop platform, initialize the window manager
+  if (Constants.isDesktop) {
     await flutter_acrylic.Window.initialize();
     await WindowManager.instance.ensureInitialized();
     windowManager.waitUntilReadyToShow().then((_) async {
@@ -395,13 +397,13 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
       appBar: NavigationAppBar(
         automaticallyImplyLeading: false,
         title: () {
-          if (Constants.kIsWeb) {
+          if (Constants.isWeb) {
             return const Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(appTitle),
             );
           }
-          if (Constants.kIsMobile) {
+          if (Constants.isMobile) {
             return const Align(
               // center, minus the width of the hamburger button
               alignment: AlignmentDirectional.centerStart,
@@ -419,7 +421,7 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
           // If Platform is Mobile, do not display dark mode toggle switch in the app bar
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 8.0),
-            child: Constants.kIsMobile
+            child: Constants.isMobile
                 ? null
                 : ToggleSwitch(
                     content: const Text('Dark Mode'),
@@ -434,7 +436,7 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
                   ),
           ),
           // Only display desktop controls on desktop native platforms.
-          if (Constants.kIsDesktop) const WindowButtons(),
+          if (Constants.isDesktop) const WindowButtons(),
         ]),
       ),
       pane: NavigationPane(

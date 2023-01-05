@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> with PageMixin {
     final theme = FluentTheme.of(context);
 
     return ScaffoldPage.scrollable(
-      header: Constants.kIsMobile
+      header: Constants.isMobile
           ? null
           : PageHeader(
               title: const Text('Fluent UI for Flutter Showcase App'),

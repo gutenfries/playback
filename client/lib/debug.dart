@@ -19,47 +19,47 @@ class Debug {
       color: _ANSIColorString.purple,
     );
     debugLog(
-      ' - kPlatform: ${Constants.kPlatform}',
+      ' - kPlatform: ${Constants.currentPlatform}',
       showTime: false,
     );
     debugLog(
-      ' - kIsWeb: ${_colorizeBool(Constants.kIsWeb)}',
+      ' - kIsWeb: ${_colorizeBool(Constants.isWeb)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNative: ${_colorizeBool(Constants.kIsNative)}',
+      ' - kIsNative: ${_colorizeBool(Constants.isNative)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsDesktop: ${_colorizeBool(Constants.kIsDesktop)}',
+      ' - kIsDesktop: ${_colorizeBool(Constants.isDesktop)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsMobile: ${_colorizeBool(Constants.kIsMobile)}',
+      ' - kIsMobile: ${_colorizeBool(Constants.isMobile)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsWindowEffectsSupported: ${_colorizeBool(Constants.kIsWindowEffectsSupported)}',
+      ' - kIsWindowEffectsSupported: ${_colorizeBool(Constants.isWindowEffectsSupported)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsSystemAccentColorSupported: ${_colorizeBool(Constants.kIsSystemAccentColorSupported)}',
+      ' - kIsSystemAccentColorSupported: ${_colorizeBool(Constants.isSystemAccentColorSupported)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsWindows: ${_colorizeBool(Constants.kIsWindows)}',
+      ' - kIsWindows: ${_colorizeBool(Constants.isWindows)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsLinux: ${_colorizeBool(Constants.kIsLinux)}',
+      ' - kIsLinux: ${_colorizeBool(Constants.isLinux)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsMacOS: ${_colorizeBool(Constants.kIsMacOS)}',
+      ' - kIsMacOS: ${_colorizeBool(Constants.isMacOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsAndroid: ${_colorizeBool(Constants.kIsAndroid)}',
+      ' - kIsAndroid: ${_colorizeBool(Constants.isAndroid)}',
       showTime: false,
     );
     debugLog(
@@ -67,35 +67,35 @@ class Debug {
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeWindows: ${_colorizeBool(Constants.kIsNativeWindows)}',
+      ' - kIsNativeWindows: ${_colorizeBool(Constants.isNativeWindows)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeLinux: ${_colorizeBool(Constants.kIsNativeLinux)}',
+      ' - kIsNativeLinux: ${_colorizeBool(Constants.isNativeLinux)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeMacOS: ${_colorizeBool(Constants.kIsNativeMacOS)}',
+      ' - kIsNativeMacOS: ${_colorizeBool(Constants.isNativeMacOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeAndroid: ${_colorizeBool(Constants.kIsNativeAndroid)}',
+      ' - kIsNativeAndroid: ${_colorizeBool(Constants.isNativeAndroid)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeIOS: ${_colorizeBool(Constants.kIsNativeIOS)}',
+      ' - kIsNativeIOS: ${_colorizeBool(Constants.isNativeIOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsDebugMode: ${_colorizeBool(Constants.kIsDebugMode)}',
+      ' - kIsDebugMode: ${_colorizeBool(Constants.isDebugMode)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsProfileMode: ${_colorizeBool(Constants.kIsProfileMode)}',
+      ' - kIsProfileMode: ${_colorizeBool(Constants.isProfileMode)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsReleaseMode: ${_colorizeBool(Constants.kIsReleaseMode)}',
+      ' - kIsReleaseMode: ${_colorizeBool(Constants.isReleaseMode)}',
       showTime: false,
     );
   }
