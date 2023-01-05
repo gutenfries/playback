@@ -11,91 +11,91 @@ class Debug {
     debugLog(
       ' -- Debug Enviroment Dump --\n',
       showTime: false,
-      color: _ANSIColorString.blue,
+      color: _ANSI.blue,
     );
     debugLog(
-      ' -- Platform k* Consts: --',
+      ' -- Platform constants: --',
       showTime: false,
-      color: _ANSIColorString.purple,
+      color: _ANSI.blue,
     );
     debugLog(
-      ' - kPlatform: ${Constants.currentPlatform}',
-      showTime: false,
-    );
-    debugLog(
-      ' - kIsWeb: ${_colorizeBool(Constants.isWeb)}',
+      ' - Platform: ${_colorizeVar(Constants.currentPlatform)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNative: ${_colorizeBool(Constants.isNative)}',
+      ' - IsWeb: ${_colorizeVar(Constants.isWeb)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsDesktop: ${_colorizeBool(Constants.isDesktop)}',
+      ' - IsNative: ${_colorizeVar(Constants.isNative)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsMobile: ${_colorizeBool(Constants.isMobile)}',
+      ' - IsDesktop: ${_colorizeVar(Constants.isDesktop)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsWindowEffectsSupported: ${_colorizeBool(Constants.isWindowEffectsSupported)}',
+      ' - IsMobile: ${_colorizeVar(Constants.isMobile)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsSystemAccentColorSupported: ${_colorizeBool(Constants.isSystemAccentColorSupported)}',
+      ' - IsWindowEffectsSupported: ${_colorizeVar(Constants.isWindowEffectsSupported)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsWindows: ${_colorizeBool(Constants.isWindows)}',
+      ' - IsSystemAccentColorSupported: ${_colorizeVar(Constants.isSystemAccentColorSupported)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsLinux: ${_colorizeBool(Constants.isLinux)}',
+      ' - IsWindows: ${_colorizeVar(Constants.isWindows)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsMacOS: ${_colorizeBool(Constants.isMacOS)}',
+      ' - IsLinux: ${_colorizeVar(Constants.isLinux)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsAndroid: ${_colorizeBool(Constants.isAndroid)}',
+      ' - IsMacOS: ${_colorizeVar(Constants.isMacOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsIOS: ${_colorizeBool(Constants.kIsIOS)}',
+      ' - IsAndroid: ${_colorizeVar(Constants.isAndroid)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeWindows: ${_colorizeBool(Constants.isNativeWindows)}',
+      ' - IsIOS: ${_colorizeVar(Constants.kIsIOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeLinux: ${_colorizeBool(Constants.isNativeLinux)}',
+      ' - IsNativeWindows: ${_colorizeVar(Constants.isNativeWindows)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeMacOS: ${_colorizeBool(Constants.isNativeMacOS)}',
+      ' - IsNativeLinux: ${_colorizeVar(Constants.isNativeLinux)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeAndroid: ${_colorizeBool(Constants.isNativeAndroid)}',
+      ' - IsNativeMacOS: ${_colorizeVar(Constants.isNativeMacOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsNativeIOS: ${_colorizeBool(Constants.isNativeIOS)}',
+      ' - IsNativeAndroid: ${_colorizeVar(Constants.isNativeAndroid)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsDebugMode: ${_colorizeBool(Constants.isDebugMode)}',
+      ' - IsNativeIOS: ${_colorizeVar(Constants.isNativeIOS)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsProfileMode: ${_colorizeBool(Constants.isProfileMode)}',
+      ' - IsDebugMode: ${_colorizeVar(Constants.isDebugMode)}',
       showTime: false,
     );
     debugLog(
-      ' - kIsReleaseMode: ${_colorizeBool(Constants.isReleaseMode)}',
+      ' - IsProfileMode: ${_colorizeVar(Constants.isProfileMode)}',
+      showTime: false,
+    );
+    debugLog(
+      ' - IsReleaseMode: ${_colorizeVar(Constants.isReleaseMode)}',
       showTime: false,
     );
   }
@@ -106,7 +106,7 @@ class Debug {
   /// - `ColorString color` - the color to use
   static String _colorize(String string, String color) {
     // return the colorized string
-    return '\x1B[$color$string\x1B[0m';
+    return '${_ANSI.esc}$color$string${_ANSI.esc}${_ANSI.eol}';
   }
 
   /// Prints a message to the console
@@ -154,63 +154,77 @@ class Debug {
     }
 
     // print the message
-    stdout.write(message);
-    // write the message to the dart developer console
-    developer.log(message, name: 'Debug');
+    if (!Constants.isWeb) {
+      // prefer stdout on native
+      stdout.write(message);
+      // write the message to the dart developer console (extranious on web)
+      developer.log(message, name: 'Debug');
+    } else {
+      // web doesn't have stdout
+      print(message);
+    }
   }
 
   /// Colors a boolean? value for printing.
   ///
   /// `false` values are colored red, `true` values are colored green, and `null` values are colored orange.
   /// - `bool? value` - the value to colorize
-  static String _colorizeBool(bool? value) {
+  static String _colorizeVar(Object? value) {
     // colorize the value
     if (value == null) {
       // value is null
-      return _colorize('null', _ANSIColorString.yellow);
-    } else if (value) {
+      return _colorize('null', _ANSI.yellow);
+    } else if (value == true) {
       // value is true
-      return _colorize('true', _ANSIColorString.green);
-    } else {
+      return _colorize('true', _ANSI.green);
+    } else if (value == false) {
       // value is false
-      return _colorize('false', _ANSIColorString.red);
+      return _colorize('false', _ANSI.red);
+    } else {
+      // value is a value
+      return _colorize(value.toString(), _ANSI.purple);
     }
   }
 }
 
-/// Colors for use with `Debug.colorize`
-///
-/// Converts a plain text color name into a matching ANSI escape code.
-class _ANSIColorString {
+class _ANSI {
+  /// ANSI Escape
+  /// ignore: unused_field
+  static const String esc = '\x1B[';
+
+  /// ANSI EOL
+  /// ignore: unused_field
+  static const String eol = '0m';
+
   /// ANSI Red
   // ignore: unused_field
-  static const String red = '\x1B[31m';
+  static const String red = '31m';
 
   /// ANSI Green
   // ignore: unused_field
-  static const String green = '\x1B[32m';
+  static const String green = '32m';
 
   /// ANSI Yellow
   // ignore: unused_field
-  static const String yellow = '\x1B[33m';
+  static const String yellow = '33m';
 
   /// ANSI Blue
   // ignore: unused_field
-  static const String blue = '\x1B[34m';
+  static const String blue = '34m';
 
   /// ANSI Purple
   // ignore: unused_field
-  static const String purple = '\x1B[35m';
+  static const String purple = '35m';
 
   /// ANSI Cyan
   // ignore: unused_field
-  static const String cyan = '\x1B[36m';
+  static const String cyan = '36m';
 
   /// ANSI White
   // ignore: unused_field
-  static const String white = '\x1B[37m';
+  static const String white = '37m';
 
   /// ANSI Black
   // ignore: unused_field
-  static const String black = '\x1B[30m';
+  static const String black = '30m';
 }

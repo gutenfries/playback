@@ -29,9 +29,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // if either in Debug or Profile mode, dump the environment
-  if (!Constants.isReleaseMode) {
-    Debug.dumpEnviroment();
-  }
+  if (!Constants.isReleaseMode) Debug.dumpEnviroment();
 
   // Platform platform = await api.platform();
   // bool isRelease = await api.rustReleaseMode();
