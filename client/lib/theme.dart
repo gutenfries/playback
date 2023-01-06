@@ -70,7 +70,6 @@ class AppTheme extends ChangeNotifier {
   }
 }
 
-/// If available, returns the system-preferred accent color.
 AccentColor get systemAccentColor {
   if (Constants.isSystemAccentColorSupported) {
     return AccentColor.swatch({

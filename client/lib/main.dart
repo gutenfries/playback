@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Page;
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:url_launcher/link.dart';
@@ -369,7 +370,6 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
       link: 'https://github.com/bdlukaa/fluent_ui',
       body: const SizedBox.shrink(),
     ),
-    // TODO: mobile widgets, Scrollbar, BottomNavigationBar, RatingBar
   ];
 
   @override
@@ -395,12 +395,14 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
       appBar: NavigationAppBar(
         automaticallyImplyLeading: false,
         title: () {
+          // On web, left align the app header
           if (Constants.isWeb) {
             return const Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(appTitle),
             );
           }
+          // Center the app header on mobile
           if (Constants.isMobile) {
             return const Align(
               // center, minus the width of the hamburger button
@@ -408,34 +410,47 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
               child: Text(appTitle),
             );
           }
+          // On desktop, left align the app header on the draggable area
           return const DragToMoveArea(
             child: Align(
               alignment: AlignmentDirectional.centerStart,
-              child: Text(appTitle),
+              child: Align(
+                child: Text(appTitle),
+              ),
             ),
           );
         }(),
-        actions: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          // If Platform is Mobile, do not display dark mode toggle switch in the app bar
-          Padding(
-            padding: const EdgeInsetsDirectional.only(end: 8.0),
-            child: Constants.isMobile
-                ? null
-                : ToggleSwitch(
-                    content: const Text('Dark Mode'),
-                    checked: FluentTheme.of(context).brightness.isDark,
-                    onChanged: (v) {
-                      if (v) {
-                        appTheme.mode = ThemeMode.dark;
-                      } else {
-                        appTheme.mode = ThemeMode.light;
-                      }
-                    },
-                  ),
-          ),
-          // Only display desktop controls on desktop native platforms.
-          if (Constants.isDesktop) const WindowButtons(),
-        ]),
+        actions: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // If Platform is Mobile, do not display dark mode toggle switch in the app bar
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 8.0),
+              // don't display dark mode toggle switch on mobile
+              child: Constants.isMobile
+                  ? null
+                  : Align(
+                      child: ToggleSwitch(
+                        checked: FluentTheme.of(context).brightness.isDark,
+                        content: Icon(
+                          FluentTheme.of(context).brightness.isDark
+                              ? TablerIcons.sun
+                              : TablerIcons.moon,
+                        ),
+                        onChanged: (v) {
+                          if (v) {
+                            appTheme.mode = ThemeMode.dark;
+                          } else {
+                            appTheme.mode = ThemeMode.light;
+                          }
+                        },
+                      ),
+                    ),
+            ),
+            // Only display desktop controls on desktop native platforms.
+            if (Constants.isDesktop) const WindowButtons(),
+          ],
+        ),
       ),
       pane: NavigationPane(
         selected: index,
