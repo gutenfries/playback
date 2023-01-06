@@ -5,3 +5,9 @@ windows.command = "flutter.bat"
 linux.command = "flutter"
 mac.command = "flutter"
 args = ["pub", "run", "flutter_rust_bridge:serve"]
+
+[tasks.gen-splash]
+windows.command = "flutter.bat"
+linux.command = "flutter"
+mac.command = "flutter"
+args = ["pub", "run", "flutter_native_splash:create"]

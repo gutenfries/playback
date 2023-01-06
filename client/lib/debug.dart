@@ -63,7 +63,7 @@ class Debug {
       showTime: false,
     );
     debugLog(
-      ' - IsIOS: ${_colorizeVar(Constants.kIsIOS)}',
+      ' - IsIOS: ${_colorizeVar(Constants.isIOS)}',
       showTime: false,
     );
     debugLog(

@@ -15,7 +15,13 @@ skip_core_tasks = true
 dependencies = ["build"]
 
 [tasks.build]
-dependencies = ["build-core", "build-cli", "build-client"]
+dependencies = [
+	"build-core",
+	"build-cli",
+	"build-client-from-workspace-root",
+	"build-client-from-client-root",
+]
+
 
 [tasks.build-core]
 args = ["build", "-p", "playback_core"]
@@ -25,7 +31,7 @@ command = "cargo"
 args = ["build", "-p", "playback_cli"]
 command = "cargo"
 
-[tasks.build-client]
+[tasks.build-client-from-workspace-root]
 condition = { files_exist = [
 	"${CARGO_MAKE_WORKING_DIRECTORY}/client/pubspec.yaml",
 ] }
@@ -41,6 +47,23 @@ args = [
 	"./client/ios/Runner/bridge_generated.h",
 	"--c-output",
 	"./client/macos/Runner/bridge_generated.h",
+	"--wasm",
+]
+
+[tasks.build-client-from-client-root]
+condition = { files_exist = ["${CARGO_MAKE_WORKING_DIRECTORY}/pubspec.yaml"] }
+command = "flutter_rust_bridge_codegen"
+args = [
+	"--rust-input",
+	"./native/src/api.rs",
+	"--dart-output",
+	"./lib/ffi/bridge_generated.dart",
+	"--dart-decl-output",
+	"./lib/ffi/bridge_definitions.dart",
+	"--c-output",
+	"./ios/Runner/bridge_generated.h",
+	"--c-output",
+	"./macos/Runner/bridge_generated.h",
 	"--wasm",
 ]
 

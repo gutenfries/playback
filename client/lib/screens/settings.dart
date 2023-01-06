@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter/foundation.dart';
+import 'package:playback/constants.dart';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
@@ -20,15 +20,6 @@ const List<String> accentColorNames = [
   'Teal',
   'Green',
 ];
-
-bool get kIsWindowEffectsSupported {
-  return !kIsWeb &&
-      [
-        TargetPlatform.windows,
-        TargetPlatform.linux,
-        TargetPlatform.macOS,
-      ].contains(defaultTargetPlatform);
-}
 
 const _LinuxWindowEffects = [
   WindowEffect.disabled,
@@ -64,13 +55,13 @@ const _MacosWindowEffects = [
 ];
 
 List<WindowEffect> get currentWindowEffects {
-  if (kIsWeb) return [];
+  if (Constants.isWeb) return [];
 
-  if (defaultTargetPlatform == TargetPlatform.windows) {
+  if (Constants.isNativeWindows) {
     return _WindowsWindowEffects;
-  } else if (defaultTargetPlatform == TargetPlatform.linux) {
+  } else if (Constants.isNativeLinux) {
     return _LinuxWindowEffects;
-  } else if (defaultTargetPlatform == TargetPlatform.macOS) {
+  } else if (Constants.isNativeMacOS) {
     return _MacosWindowEffects;
   }
 
@@ -109,7 +100,7 @@ class Settings extends ScrollablePage {
               if (value) {
                 appTheme.mode = mode;
 
-                if (kIsWindowEffectsSupported) {
+                if (Constants.isWindowEffectsSupported) {
                   // some window effects require on [dark] to look good.
                   // appTheme.setEffect(WindowEffect.disabled, context);
                   appTheme.setEffect(appTheme.windowEffect, context);
@@ -176,10 +167,10 @@ class Settings extends ScrollablePage {
           );
         }),
       ]),
-      if (kIsWindowEffectsSupported) ...[
+      if (Constants.isWindowEffectsSupported) ...[
         biggerSpacer,
         Text(
-          'Window Transparency (${defaultTargetPlatform.toString().replaceAll('TargetPlatform.', '')})',
+          'Window Transparency (${Constants.currentPlatform.toString().replaceAll('TargetPlatform.', '')})',
           style: FluentTheme.of(context).typography.subtitle,
         ),
         spacer,

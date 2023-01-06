@@ -7,5 +7,11 @@
 		"circlecodesolution.ccs-flutter-color",
 		"aksharpatel47.vscode-flutter-helper",
 		"localizely.flutter-intl"
+	],
+	"unwantedRecommendations": [
+		// cmake extensions often causes issues with flutter
+		"twxs.cmake",
+		"vector-of-bool.cmake-tools",
+		"ms-vscode.cmake-tools",
 	]
 }

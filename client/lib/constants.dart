@@ -156,7 +156,7 @@ class Constants {
   ///
   /// ## See Also:
   /// - [isNativeIOS]
-  static bool get kIsIOS =>
+  static bool get isIOS =>
       flutter_foundation.defaultTargetPlatform ==
       flutter_foundation.TargetPlatform.iOS;
 
@@ -227,7 +227,7 @@ class Constants {
   ///
   /// ## See Also:
   /// - [isNative]
-  /// - [kIsIOS]
+  /// - [isIOS]
   static bool get isNativeIOS =>
       // if isn't on the web
       !flutter_foundation.kIsWeb &&
