@@ -1,8 +1,6 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
-
 void showCopiedSnackbar(BuildContext context, String copiedText) {
   showSnackbar(
     context,
@@ -44,7 +42,7 @@ class _IconsPageState extends State<IconsPage> {
     assert(debugCheckHasFluentTheme(context));
 
     // final entries = FluentIcons.all.entries.where(
-    final entries = TablerIcons.all.entries.where(
+    final entries = FluentIcons.allIcons.entries.where(
       (icon) =>
           filterText.isEmpty ||
           // Remove '_'
@@ -66,7 +64,7 @@ class _IconsPageState extends State<IconsPage> {
           child: Tooltip(
             message: 'Filter by name',
             child: TextBox(
-              suffix: const Icon(TablerIcons.search),
+              suffix: const Icon(FluentIcons.search),
               placeholder: 'Type to filter icons by name (e.g "logo")',
               onChanged: (value) => setState(() {
                 filterText = value;
@@ -99,7 +97,7 @@ class _IconsPageState extends State<IconsPage> {
           final e = entries.elementAt(index);
           return HoverButton(
             onPressed: () async {
-              final copyText = 'TablerIcons.${e.key}';
+              final copyText = 'FluentIcons.${e.key}';
               await FlutterClipboard.copy(copyText);
               showCopiedSnackbar(context, copyText);
             },
@@ -111,7 +109,7 @@ class _IconsPageState extends State<IconsPage> {
                 child: Tooltip(
                   useMousePosition: false,
                   message:
-                      '\nTablerIcons.${e.key}\n(tap to copy to clipboard)\n',
+                      '\nFluentIcons.${e.key}\n(tap to copy to clipboard)\n',
                   child: RepaintBoundary(
                     child: AnimatedContainer(
                       duration: FluentTheme.of(context).fasterAnimationDuration,

@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart' hide Page;
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
-import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:url_launcher/link.dart';
@@ -405,18 +404,17 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
           // Center the app header on mobile
           if (Constants.isMobile) {
             return const Align(
-              // center, minus the width of the hamburger button
               alignment: AlignmentDirectional.centerStart,
-              child: Text(appTitle),
+              child: Align(
+                child: Text(appTitle),
+              ),
             );
           }
           // On desktop, left align the app header on the draggable area
           return const DragToMoveArea(
             child: Align(
               alignment: AlignmentDirectional.centerStart,
-              child: Align(
-                child: Text(appTitle),
-              ),
+              child: Text(appTitle),
             ),
           );
         }(),
@@ -434,8 +432,8 @@ class _MyHomePageState extends State<MyHomePage> with WindowListener {
                         checked: FluentTheme.of(context).brightness.isDark,
                         content: Icon(
                           FluentTheme.of(context).brightness.isDark
-                              ? TablerIcons.sun
-                              : TablerIcons.moon,
+                              ? FluentIcons.sunny
+                              : FluentIcons.clear_night,
                         ),
                         onChanged: (v) {
                           if (v) {
